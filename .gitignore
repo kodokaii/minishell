@@ -1,0 +1,5 @@
+.*.swp
+chforbid/
+init
+*.o
+*.a

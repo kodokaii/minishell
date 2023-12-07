@@ -1,0 +1,3 @@
+[submodule "chforbid"]
+	path = chforbid
+	url = https://github.com/demostanis/chforbid
