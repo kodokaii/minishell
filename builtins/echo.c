@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 19:58:18 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 15:57:04 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/08 19:06:37 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,19 @@
 
 int	builtin_echo(char **argv)
 {
-	int	output_newline;
+	int		output_newline;
+	char	*option;
 
 	output_newline = 1;
-	if (*argv && ft_strcmp(ft_substr(*argv, 0, 2), "-n") == 0)
+	if (*argv)
 	{
-		output_newline = 0;
-		++argv;
+		option = ft_substr(*argv, 0, 2);
+		if (ft_strcmp(option, "-n") == 0)
+		{
+			output_newline = 0;
+			++argv;
+		}
+		free(option);
 	}
 	while (*argv)
 	{
