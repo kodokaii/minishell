@@ -6,31 +6,45 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 14:24:00 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/08 15:24:07 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+static t_should_continue	handle_input(char *input, t_should_free should_free)
 {
-	char	*input;
 	char	**argv;
 
+	if (input == NULL)
+		return (ft_putchar_fd('\n', 1), SHOULD_NOT_CONTINUE);
+	argv = ft_split(input, " \t");
+	if (argv == NULL)
+		return (free(input), SHOULD_NOT_CONTINUE);
+	add_history(input);
+	handle_builtins(argv);
+	ft_split_free(argv);
+	if (should_free)
+		free(input);
+	return (SHOULD_CONTINUE);
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	char	*input;
+
+	ft_envp(envp);
+	if (argc == 2)
+		return (handle_input(argv[1], SHOULD_NOT_FREE), 0);
+	else if (argc > 2)
+		return (ft_dprintf(STDERR_FILENO,
+				PROGRAM_NAME": too many arguments\n"), 0);
+	setup_signals();
 	while (1)
 	{
 		input = readline(PROGRAM_NAME"% ");
-		if (input == NULL)
-		{
-			ft_putchar_fd('\n', 1);
+		if (!handle_input(input, SHOULD_FREE))
 			break ;
-		}
-		argv = ft_split(input, " \t");
-		if (argv == NULL)
-			return (free(input), 1);
-		handle_builtins(argv);
-		ft_split_free(argv);
-		free(input);
 	}
 	return (0);
 }

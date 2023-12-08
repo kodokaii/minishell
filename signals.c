@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle.c                                           :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 19:55:20 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 14:40:58 by cgodard          ###   ########.fr       */
+/*   Created: 2023/12/08 14:52:35 by cgodard           #+#    #+#             */
+/*   Updated: 2023/12/08 15:36:26 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	handle_builtins(char **argv)
+static void	handle_signals(int signal)
 {
-	if (ft_strcmp(*argv, "cd") == 0)
-		return (builtin_cd(argv + 1), 1);
-	else if (ft_strcmp(*argv, "pwd") == 0)
-		return (builtin_pwd(argv + 1), 1);
-	else if (ft_strcmp(*argv, "exit") == 0)
-		return (builtin_exit(argv + 1), 1);
-	else if (ft_strcmp(*argv, "env") == 0)
-		return (builtin_env(argv + 1), 1);
-	return (0);
+	if (signal == SIGINT)
+	{
+		ft_putchar_fd('\n', 1);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+	else if (signal == SIGQUIT)
+		return ;
+}
+
+void	setup_signals(void)
+{
+	signal(SIGINT, handle_signals);
+	signal(SIGQUIT, handle_signals);
 }

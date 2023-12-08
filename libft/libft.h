@@ -6,12 +6,14 @@
 /*   By: kodokai <kodokai.featheur@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:43:09 by kodokai           #+#    #+#             */
-/*   Updated: 2023/12/05 19:59:52 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/08 14:39:54 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+#define MAX_FILES 1024
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -103,6 +105,7 @@ double		ft_abs_double(double n);
 
 float		ft_expf(float x);
 
+char *ft_get_next_line(int fd);
 void		ft_swap_int(int *a, int *b);
 t_llu		ft_srand(t_llu init_seed);
 int			ft_rand(void);
@@ -188,6 +191,7 @@ int			ft_split_argv(int *argc, char ***argv);
 char		**ft_argv(char **init_argv);
 
 char		*ft_basename(char const *s);
+char *const	*ft_envp(char *const *envp);
 char const	*ft_get_envp(char const *var, char *const *envp);
 
 t_buf		ft_gnl(int fd);

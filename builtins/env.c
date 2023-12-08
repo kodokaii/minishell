@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle.c                                           :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 19:55:20 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 14:40:58 by cgodard          ###   ########.fr       */
+/*   Created: 2023/12/07 20:10:08 by cgodard           #+#    #+#             */
+/*   Updated: 2023/12/08 14:45:15 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	handle_builtins(char **argv)
+int	builtin_env(char **argv)
 {
-	if (ft_strcmp(*argv, "cd") == 0)
-		return (builtin_cd(argv + 1), 1);
-	else if (ft_strcmp(*argv, "pwd") == 0)
-		return (builtin_pwd(argv + 1), 1);
-	else if (ft_strcmp(*argv, "exit") == 0)
-		return (builtin_exit(argv + 1), 1);
-	else if (ft_strcmp(*argv, "env") == 0)
-		return (builtin_env(argv + 1), 1);
-	return (0);
+	char *const	*envp;
+
+	envp = ft_envp(NULL);
+	if (*argv)
+		return (ft_dprintf(STDERR_FILENO,
+				PROGRAM_NAME": env: too many arguments\n"), 0);
+	while (*envp)
+		ft_putendl_fd(*envp++, 1);
+	return (1);
 }

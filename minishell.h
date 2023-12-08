@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 14:14:25 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/08 15:24:50 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,31 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <signal.h>
 # include <readline/readline.h>
+# include <readline/history.h>
 # include "libft.h"
 
-// builtins
-int	handle_builtins(char **argv);
-int	builtin_cd(char **argv);
-int	builtin_pwd(char **pwd);
-int	builtin_exit(char **pwd);
+typedef enum e_should_continue
+{
+	SHOULD_NOT_CONTINUE = 0,
+	SHOULD_CONTINUE = 1,
+}	t_should_continue;
+
+typedef enum e_should_free
+{
+	SHOULD_NOT_FREE = 0,
+	SHOULD_FREE = 1,
+}	t_should_free;
+
+// signals.c
+void	setup_signals(void);
+
+// builtins/
+int		handle_builtins(char **argv);
+int		builtin_cd(char **argv);
+int		builtin_pwd(char **argv);
+int		builtin_exit(char **argv);
+int		builtin_env(char **argv);
 
 #endif

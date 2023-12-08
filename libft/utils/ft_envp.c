@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle.c                                           :+:      :+:    :+:   */
+/*   ft_envp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 19:55:20 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 14:40:58 by cgodard          ###   ########.fr       */
+/*   Created: 2023/12/08 14:35:31 by cgodard           #+#    #+#             */
+/*   Updated: 2023/12/08 14:39:50 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../libft.h"
 
-int	handle_builtins(char **argv)
+char *const	*ft_envp(char *const *envp)
 {
-	if (ft_strcmp(*argv, "cd") == 0)
-		return (builtin_cd(argv + 1), 1);
-	else if (ft_strcmp(*argv, "pwd") == 0)
-		return (builtin_pwd(argv + 1), 1);
-	else if (ft_strcmp(*argv, "exit") == 0)
-		return (builtin_exit(argv + 1), 1);
-	else if (ft_strcmp(*argv, "env") == 0)
-		return (builtin_env(argv + 1), 1);
-	return (0);
+	static char	*const *saved_envp = NULL;
+
+	if (envp == NULL)
+		return (saved_envp);
+	saved_envp = envp;
+	return (NULL);
 }

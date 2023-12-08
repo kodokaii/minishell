@@ -3,7 +3,9 @@ OBJECTS = \
 		  builtins/handle.o \
 		  builtins/cd.o \
 		  builtins/pwd.o \
-		  builtins/exit.o
+		  builtins/exit.o \
+		  builtins/env.o \
+		  signals.o
 
 LIBFT = libft/libft.a
 
