@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 14:24:00 by cgodard          ###   ########.fr       */
+/*   Created: 2023/12/07 20:10:08 by cgodard           #+#    #+#             */
+/*   Updated: 2023/12/08 14:14:03 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+int	builtin_pwd(char **argv)
 {
-	char	*input;
-	char	**argv;
+	char	*pwd;
 
-	while (1)
-	{
-		input = readline(PROGRAM_NAME"% ");
-		if (input == NULL)
-		{
-			ft_putchar_fd('\n', 1);
-			break ;
-		}
-		argv = ft_split(input, " \t");
-		if (argv == NULL)
-			return (free(input), 1);
-		handle_builtins(argv);
-		ft_split_free(argv);
-		free(input);
-	}
-	return (0);
+	if (*argv)
+		return (ft_dprintf(STDERR_FILENO,
+				PROGRAM_NAME": pwd: too many arguments\n"), 0);
+	pwd = getcwd(NULL, PATH_MAX);
+	ft_printf("%s\n", pwd);
+	return (1);
 }

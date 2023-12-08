@@ -1,10 +1,15 @@
 OBJECTS = \
 		  minishell.o \
+		  builtins/handle.o \
+		  builtins/cd.o \
+		  builtins/pwd.o \
+		  builtins/exit.o
 
 LIBFT = libft/libft.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Ilibft
+CFLAGS = -Wall -Wextra -Werror -Ilibft -I.
+LDFLAGS = -lreadline
 ifeq ($(DEBUG), 1)
 CFLAGS += -g
 endif
@@ -14,7 +19,7 @@ NAME = minishell
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(LIBFT)
-	$(CC) $(CFLAGS) $^ -o $(NAME)
+	$(CC) $(CFLAGS) $^ -o $(NAME) $(LDFLAGS)
 
 $(LIBFT):
 	$(MAKE) -C libft
@@ -22,7 +27,7 @@ $(LIBFT):
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-debug:
+debug: fclean
 	$(MAKE) DEBUG=1 all
 
 clean: 

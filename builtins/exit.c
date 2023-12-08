@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 14:24:00 by cgodard          ###   ########.fr       */
+/*   Created: 2023/12/07 20:10:08 by cgodard           #+#    #+#             */
+/*   Updated: 2023/12/08 14:20:20 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+int	builtin_exit(char **argv)
 {
-	char	*input;
-	char	**argv;
+	int	exit_code;
 
-	while (1)
+	exit_code = 0;
+	if (*argv)
 	{
-		input = readline(PROGRAM_NAME"% ");
-		if (input == NULL)
-		{
-			ft_putchar_fd('\n', 1);
-			break ;
-		}
-		argv = ft_split(input, " \t");
-		if (argv == NULL)
-			return (free(input), 1);
-		handle_builtins(argv);
-		ft_split_free(argv);
-		free(input);
+		if (argv[1])
+			return (ft_dprintf(STDERR_FILENO,
+					PROGRAM_NAME": exit: too many arguments\n"), 0);
+		exit_code = ft_atoi(*argv);
 	}
-	return (0);
+	exit(exit_code);
+	return (1);
 }
+

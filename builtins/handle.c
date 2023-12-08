@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   handle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 14:24:00 by cgodard          ###   ########.fr       */
+/*   Created: 2023/12/07 19:55:20 by cgodard           #+#    #+#             */
+/*   Updated: 2023/12/08 14:14:13 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+int	handle_builtins(char **argv)
 {
-	char	*input;
-	char	**argv;
-
-	while (1)
-	{
-		input = readline(PROGRAM_NAME"% ");
-		if (input == NULL)
-		{
-			ft_putchar_fd('\n', 1);
-			break ;
-		}
-		argv = ft_split(input, " \t");
-		if (argv == NULL)
-			return (free(input), 1);
-		handle_builtins(argv);
-		ft_split_free(argv);
-		free(input);
-	}
+	if (ft_strcmp(*argv, "cd") == 0)
+		return (builtin_cd(argv + 1), 1);
+	else if (ft_strcmp(*argv, "pwd") == 0)
+		return (builtin_pwd(argv + 1), 1);
+	else if (ft_strcmp(*argv, "exit") == 0)
+		return (builtin_exit(argv + 1), 1);
 	return (0);
 }
