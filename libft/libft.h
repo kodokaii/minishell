@@ -6,7 +6,7 @@
 /*   By: kodokai <kodokai.featheur@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:43:09 by kodokai           #+#    #+#             */
-/*   Updated: 2023/12/08 14:39:54 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/08 17:10:19 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,6 @@ int			ft_split_argv(int *argc, char ***argv);
 char		**ft_argv(char **init_argv);
 
 char		*ft_basename(char const *s);
-char *const	*ft_envp(char *const *envp);
 char const	*ft_get_envp(char const *var, char *const *envp);
 
 t_buf		ft_gnl(int fd);

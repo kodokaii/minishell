@@ -5,7 +5,11 @@ OBJECTS = \
 		  builtins/pwd.o \
 		  builtins/exit.o \
 		  builtins/env.o \
-		  signals.o
+		  builtins/echo.o \
+		  builtins/unset.o \
+		  builtins/export.o \
+		  signals.o \
+		  env.o
 
 LIBFT = libft/libft.a
 

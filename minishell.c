@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 15:24:07 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/08 18:49:59 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static t_should_continue	handle_input(char *input, t_should_free should_free)
 		return (free(input), SHOULD_NOT_CONTINUE);
 	add_history(input);
 	handle_builtins(argv);
-	ft_split_free(argv);
 	if (should_free)
 		free(input);
 	return (SHOULD_CONTINUE);
@@ -35,7 +34,8 @@ int	main(int argc, char **argv, char **envp)
 
 	ft_envp(envp);
 	if (argc == 2)
-		return (handle_input(argv[1], SHOULD_NOT_FREE), 0);
+		return (handle_input(argv[1], SHOULD_NOT_FREE),
+			ft_split_free(*ft_envp(NULL)), 0);
 	else if (argc > 2)
 		return (ft_dprintf(STDERR_FILENO,
 				PROGRAM_NAME": too many arguments\n"), 0);
@@ -46,5 +46,6 @@ int	main(int argc, char **argv, char **envp)
 		if (!handle_input(input, SHOULD_FREE))
 			break ;
 	}
+	ft_split_free(*ft_envp(NULL));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 15:24:50 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/08 18:30:59 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,19 @@ typedef enum e_should_free
 // signals.c
 void	setup_signals(void);
 
+// env.c
+char	***ft_envp(char **envp);
+void	ft_unsetenv(char *name);
+void	ft_setenv(char *variable);
+
 // builtins/
 int		handle_builtins(char **argv);
 int		builtin_cd(char **argv);
 int		builtin_pwd(char **argv);
 int		builtin_exit(char **argv);
 int		builtin_env(char **argv);
+int		builtin_echo(char **argv);
+int		builtin_unset(char **argv);
+int		builtin_export(char **argv);
 
 #endif

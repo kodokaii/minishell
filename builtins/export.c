@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:10:08 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 18:39:08 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/08 17:43:58 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	builtin_env(char **argv)
+int	builtin_export(char **argv)
 {
-	char	**envp;
+	char	**parts;
 
-	envp = *ft_envp(NULL);
-	if (*argv)
-		return (ft_dprintf(STDERR_FILENO,
-				PROGRAM_NAME": env: too many arguments\n"), 0);
-	while (*envp)
-		ft_putendl_fd(*envp++, 1);
+	if (*argv == NULL)
+		return (builtin_env(argv));
+	while (*argv)
+	{
+		parts = ft_split(*argv, "=");
+		if (parts == NULL)
+			return (0);
+		if (parts[1] == NULL)
+		{
+			++argv;
+			ft_split_free(parts);
+			continue ;
+		}
+		ft_setenv(*argv++);
+		ft_split_free(parts);
+	}
 	return (1);
 }

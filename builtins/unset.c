@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_envp.c                                          :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 14:35:31 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 14:39:50 by cgodard          ###   ########.fr       */
+/*   Created: 2023/12/07 20:10:08 by cgodard           #+#    #+#             */
+/*   Updated: 2023/12/08 16:53:09 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "minishell.h"
 
-char *const	*ft_envp(char *const *envp)
+int	builtin_unset(char **argv)
 {
-	static char	*const *saved_envp = NULL;
-
-	if (envp == NULL)
-		return (saved_envp);
-	saved_envp = envp;
-	return (NULL);
+	if (*argv == NULL)
+		return (ft_dprintf(STDERR_FILENO,
+				PROGRAM_NAME": unset: not enough arguments\n",
+				strerror(errno)), 0);
+	while (*argv)
+		ft_unsetenv(*argv++);
+	return (1);
 }

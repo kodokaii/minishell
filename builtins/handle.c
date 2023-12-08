@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 19:55:20 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 15:41:19 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/08 17:06:42 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,11 @@ int	handle_builtins(char **argv)
 		return (builtin_exit(argv + 1), 1);
 	else if (ft_strcmp(*argv, "env") == 0)
 		return (builtin_env(argv + 1), 1);
+	else if (ft_strcmp(*argv, "echo") == 0)
+		return (builtin_echo(argv + 1), 1);
+	else if (ft_strcmp(*argv, "unset") == 0)
+		return (builtin_unset(argv + 1), 1);
+	else if (ft_strcmp(*argv, "export") == 0)
+		return (builtin_export(argv + 1), 1);
 	return (0);
 }
