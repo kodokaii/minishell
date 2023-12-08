@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 18:49:59 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/08 19:42:47 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static t_should_continue	handle_input(char *input, t_should_free should_free)
 	handle_builtins(argv);
 	if (should_free)
 		free(input);
+	ft_split_free(argv);
 	return (SHOULD_CONTINUE);
 }
 
