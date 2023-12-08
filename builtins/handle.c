@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 19:55:20 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 14:40:58 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/08 15:41:19 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	handle_builtins(char **argv)
 {
+	if (*argv == NULL)
+		return (0);
 	if (ft_strcmp(*argv, "cd") == 0)
 		return (builtin_cd(argv + 1), 1);
 	else if (ft_strcmp(*argv, "pwd") == 0)
