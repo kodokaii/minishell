@@ -23,17 +23,20 @@ for file in "$cwd"/test_*.c; do
 	# of --error-exitcode since valgrind
 	# does not exit with the specific exitcode
 	# if the children have errors
+	echo -n "$name... "
 	valgrind \
 		--log-file="$logfile" \
+		--suppressions="$cwd"/readline-leaks.sup \
 		--trace-children=yes --show-leak-kinds=all \
 		--error-markers="$marker" --leak-check=full ./"$name"
 	if [ $? != 0 ] || grep -q "$marker" "$logfile"; then
 		cat "$logfile" | \
-			grep -v "$marker" | \
+			grep -av "$marker" | \
 			sed 's/=\?==[0-9]\+\(== \)\?//g' | \
-			grep -v 'rerun with: -s' | \
-			tail +9 >&2
-		echo "$name" failed :/ >&2
+			grep -av 'rerun with: -s' | \
+			tail +11 | head -n -8 >&2
+	else
+		echo OK
 	fi
 	rm "$name"
 done
