@@ -1,7 +1,8 @@
 all: norm chforbid test
 
-norm:
-	@norminette builtins/*.c *.c *.h | grep -v OK; [ $$? = 0 ] && exit 1 || :
+FILES = \
+	builtins/*.c \
+	*.c
 
 ALLOWED_FUNCTIONS = \
 					readline rl_clear_history rl_on_new_line \
@@ -15,10 +16,17 @@ ALLOWED_FUNCTIONS = \
 					getenv tcsetattr tcgetattr tgetent tgetflag \
 					tgetnum tgetstr tgoto tputs
 
+norm:
+	@norminette $(FILES) *.h | grep -v OK; [ $$? = 0 ] && exit 1 || :
+
 chforbid:
-	@chforbid/chforbid -a "$(ALLOWED_FUNCTIONS)" *.c builtins/*.c
+	@chforbid/chforbid -a "$(ALLOWED_FUNCTIONS)" $(FILES)
 
 test:
 	@tests/run_tests.sh
 
-.PHONY: all norm chforbid test
+setup:
+	pip install tree_sitter
+	git submodule update --init --recursive
+
+.PHONY: all norm chforbid test setup
