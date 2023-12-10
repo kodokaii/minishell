@@ -6,7 +6,7 @@
 /*   By: kodokai <kodokai.featheur@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:43:09 by kodokai           #+#    #+#             */
-/*   Updated: 2023/12/08 17:10:19 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/10 15:21:54 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,7 @@ t_bool		ft_lstis_sort(t_list *root, int (*cmp)());
 void		ft_lstsort(t_list **root, int (*cmp)());
 void		ft_lstsort_merge(t_list **root, t_list *list, int (*cmp)());
 t_list		*ft_lstmap(t_list *lst, void *(*f)(), void (*del)());
+void		ft_lstremove(t_list **lst, t_list *to_remove, void (*del)(void *));
 
 t_bst		*ft_bstnew(void *data);
 t_bst		*ft_bstpush(t_bst **root, void *data, int (*cmp)());
