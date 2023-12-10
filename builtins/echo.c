@@ -15,18 +15,19 @@
 int	builtin_echo(char **argv)
 {
 	int		output_newline;
-	char	*option;
+	size_t	i;
 
+	i = 1;
 	output_newline = 1;
-	if (*argv)
+	if (*argv && **argv == '-')
 	{
-		option = ft_substr(*argv, 0, 2);
-		if (ft_strcmp(option, "-n") == 0)
+		while ((*argv)[i] == 'n')
+			++i;
+		if (i != 1 && (*argv)[i] == 0)
 		{
 			output_newline = 0;
 			++argv;
 		}
-		free(option);
 	}
 	while (*argv)
 	{

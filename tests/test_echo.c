@@ -46,4 +46,12 @@ int	main(void)
 	ENSURE_OUTPUT(
 		ARGV({"./minishell", "echo hello     world", NULL}),
 		"hello world\n");
+
+	ENSURE_OUTPUT(
+		ARGV({"./minishell", "echo -na hello     ", NULL}),
+		"-na hello\n");
+
+	ENSURE_OUTPUT(
+		ARGV({"./minishell", "echo - hello     ", NULL}),
+		"- hello\n");
 }
