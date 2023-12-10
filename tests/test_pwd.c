@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   test_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 20:10:08 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/10 16:57:15 by cgodard          ###   ########.fr       */
+/*   Created: 0000/00/00 00:00:00 by cgodard           #+#    #+#             */
+/*   Updated: 2023/12/10 16:52:15 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include <stdio.h>
+#include <assert.h>
+#include "libtest.h"
 
-int	builtin_exit(char **argv)
+int	main(void)
 {
-	int	exit_code;
+	ENSURE_OUTPUT_MATCHES(
+		ARGV({"./minishell", "pwd", NULL}),
+		"^.*/.*$");
 
-	exit_code = 0;
-	if (*argv)
-	{
-		if (argv[1])
-			return (ft_dprintf(STDERR_FILENO,
-					PROGRAM_NAME": exit: too many arguments\n"), 0);
-		exit_code = ft_atoi(*argv);
-	}
-	ft_lstclear(ft_envp(NULL), free);
-	ft_split_free(argv - 1);
-	exit(exit_code);
-	return (1);
+	ENSURE_ERROR(
+		ARGV({"./minishell", "pwd lalalalalal", NULL}),
+		"minishell: pwd: too many arguments\n");
 }
