@@ -1,4 +1,6 @@
-all: norm chforbid test
+ifneq ($(CORRECTION),1)
+all: norm chforbid
+endif
 
 FILES = \
 	builtins/*.c \
@@ -22,7 +24,7 @@ norm:
 chforbid:
 	@chforbid/chforbid -a "$(ALLOWED_FUNCTIONS)" $(FILES)
 
-test:
+test: all
 	@tests/run_tests.sh
 
 setup:
