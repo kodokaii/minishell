@@ -6,14 +6,12 @@
 /*   By: kodokai <kodokai.featheur@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:43:09 by kodokai           #+#    #+#             */
-/*   Updated: 2023/12/08 17:10:19 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/10 22:33:02 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
-#define MAX_FILES 1024
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -105,7 +103,6 @@ double		ft_abs_double(double n);
 
 float		ft_expf(float x);
 
-char *ft_get_next_line(int fd);
 void		ft_swap_int(int *a, int *b);
 t_llu		ft_srand(t_llu init_seed);
 int			ft_rand(void);
@@ -124,6 +121,7 @@ int			ft_tolower(int c);
 
 int			ft_errloc(void);
 
+void		*ft_calloc(size_t nmemb, size_t size);
 void		*ft_realloc(void *ptr, size_t oldsize, size_t newsize);
 void		ft_bzero(void *s, size_t n);
 void		*ft_memdup(const void *src, size_t n);
@@ -144,6 +142,7 @@ void		ft_buf_realloc(t_buf *buf, size_t new_size);
 void		ft_buf_free(t_buf *buf);
 void		*ft_buf_write(t_buf *dst, t_buf *src, size_t offset);
 
+char		*ft_strcpy(char *dest, char *src);
 size_t		ft_strlen(const char *s);
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 size_t		ft_strlcat(char *dst, const char *src, size_t size);
@@ -153,24 +152,22 @@ int			ft_strcmp(const char *s1, const char *s2);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 char		*ft_strnstr(const char *big, const char *little, size_t len);
 char		*ft_strpbrk(const char *s, const char *charset);
-
-size_t		ft_word_len(char const *str, char const *sep);
-size_t		ft_count_word(char const *str, char const *sep);
-char		**ft_split(char const *s, char *sep);
-void		ft_split_free(char **split);
-
-int			ft_atoi(const char *str);
-double		ft_atof(const char *str);
-int			ft_strtoi(const char *nptr, char **endptr);
-void		*ft_calloc(size_t nmemb, size_t size);
 char		*ft_strdup(const char *s);
 char		*ft_strndup(const char *s, size_t n);
 char		*ft_substr(char const *s, size_t start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
-char		*ft_itoa(int n);
 char		*ft_strmapi(char const *s, char (*f)(size_t, char));
 void		ft_striteri(char *s, void (*f)(size_t, char*));
+
+char		*ft_itoa(int n);
+int			ft_atoi(const char *str);
+double		ft_atof(const char *str);
+int			ft_strtoi(const char *nptr, char **endptr);
+size_t		ft_word_len(char const *str, char const *sep);
+size_t		ft_count_word(char const *str, char const *sep);
+char		**ft_split(char const *s, char *sep);
+void		ft_split_free(char **split);
 
 void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(const char *s, int fd);
@@ -199,8 +196,8 @@ int			ft_close(int *fd);
 int			ft_get_heredoc(char const *limiter);
 char		*ft_which(char const *cmd, char *const *envp);
 
-pid_t		ft_execve(int *in, char const *cmd, char *const *envp, int *out);
-int			ft_pipex(int in, char *const *cmd, char *const *envp, int out);
+pid_t		ft_execve(int *in, char **cmd, char **envp, int *out);
+int			ft_pipex(int in, char **cmd, char **envp, int out);
 
 t_list		*ft_lstnew(void *data);
 t_list		*ft_lstnew_alloc(t_alloc *alloc, void *data);

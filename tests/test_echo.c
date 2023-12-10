@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 0000/00/00 00:00:00 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/09 19:29:11 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/10 15:03:19 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ int	main(void)
 	ENSURE_OUTPUT(
 		ARGV({"./minishell", "echo -na hello     ", NULL}),
 		"-na hello\n");
+
+	ENSURE_OUTPUT(
+		ARGV({"./minishell", "echo -nnnnp	 hello     ", NULL}),
+		"-nnnnp hello\n");
 
 	ENSURE_OUTPUT(
 		ARGV({"./minishell", "echo - hello     ", NULL}),

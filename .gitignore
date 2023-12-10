@@ -1,5 +1,9 @@
 minishell
-.*.swp
+*.swp
 init
 *.o
 *.a
+*.txt
+*.pdf
+test*
+a.out
