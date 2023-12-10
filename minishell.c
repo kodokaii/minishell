@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 19:42:47 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/10 15:38:30 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv, char **envp)
 	ft_envp(envp);
 	if (argc == 2)
 		return (handle_input(argv[1], SHOULD_NOT_FREE),
-			ft_split_free(*ft_envp(NULL)), 0);
+			ft_lstclear(ft_envp(NULL), free), 0);
 	else if (argc > 2)
 		return (ft_dprintf(STDERR_FILENO,
 				PROGRAM_NAME": too many arguments\n"), 0);
@@ -47,6 +47,6 @@ int	main(int argc, char **argv, char **envp)
 		if (!handle_input(input, SHOULD_FREE))
 			break ;
 	}
-	ft_split_free(*ft_envp(NULL));
+	ft_lstclear(ft_envp(NULL), free);
 	return (0);
 }

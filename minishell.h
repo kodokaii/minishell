@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 18:30:59 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/10 16:44:37 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef enum e_should_free
 void	setup_signals(void);
 
 // env.c
-char	***ft_envp(char **envp);
+t_list	**ft_envp(char **envp);
 void	ft_unsetenv(char *name);
 void	ft_setenv(char *variable);
 

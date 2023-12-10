@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 0000/00/00 00:00:00 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/09 19:28:50 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/10 16:58:51 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static char	**split(char *s, char c)
 	size_t	len;
 	char	**result;
 
+	if (s == NULL)
+		return (NULL);
 	i = 0;
 	j = 0;
 	k = 0;
@@ -135,7 +137,10 @@ static void	parent_proc(int pipefd[2], char **parts, int do_regex)
 	wait(NULL);
 	while (1)
 	{
-		s1 = parts[i];
+		if (parts == NULL)
+			s1 = NULL;
+		else
+			s1 = parts[i];
 		if (s2)
 			free(s2);
 		s2 = ft_gnl(pipefd[0]).buf;
