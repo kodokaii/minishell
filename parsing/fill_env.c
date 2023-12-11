@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   fill_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/11 12:56:50 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/11 15:24:36 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	get_env(char *str, char **env)
 	path = ft_strndup(str, path_len);
 	if (!path)
 		return (EXIT_FAILURE);
-	env_static = getenv(path);
+	env_static = ft_getenv(path);
 	free(path);
 	if (!env_static)
 		return (EXIT_SUCCESS);

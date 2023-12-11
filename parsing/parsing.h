@@ -6,14 +6,14 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/11 15:08:43 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/11 15:39:12 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
-# include "libft.h"
+# include "minishell.h"
 
 typedef enum e_token_type
 {

@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:11:27 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/11 15:14:01 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/11 15:56:08 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,18 @@ t_list	**ft_envp(char **envp)
 	return (NULL);
 }
 
-static size_t	indexof(char *s, char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == c)
-			break ;
-		++i;
-	}
-	return (i);
-}
-
 static int	varcmp(char *s1, char *s2)
 {
-	return (indexof(s1, '=') == indexof(s2, '=')
+	size_t	name1len;
+	size_t	name2len;
+
+	name1len = 0;
+	while (s1[name1len] && s1[name1len] != '=')
+		++name1len;
+	name2len = 0;
+	while (s2[name2len] && s2[name2len] != '=')
+		++name2len;
+	return (name1len == name2len
 		&& ft_strncmp(s1, s2, ft_strchr(s1, '=') - s1) == 0);
 }
 
@@ -56,6 +51,16 @@ void	ft_unsetenv(char *name)
 	while (*envp && !varcmp((char *)(*envp)->data, name))
 		envp = &(*envp)->next;
 	ft_lstremove(envp, free);
+}
+
+char	*ft_getenv(char *name)
+{
+	t_list	*envp;
+
+	envp = *ft_envp(NULL);
+	while (envp && !varcmp((char *)envp->data, name))
+		envp = envp->next;
+	return (ft_strchr((char *)envp->data, '=') + 1);
 }
 
 void	ft_setenv(char *variable)

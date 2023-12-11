@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/11 11:52:48 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/11 15:25:58 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	setup_signals(void);
 // env.c
 t_list	**ft_envp(char **envp);
 void	ft_unsetenv(char *name);
+char	*ft_getenv(char *name);
 void	ft_setenv(char *variable);
 
 // builtins/
