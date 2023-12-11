@@ -6,13 +6,13 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:11:06 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/11 18:26:18 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/11 18:53:21 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_strjoinnfree(char **s1, char *s2)
+static void	ft_strjoinnfree(char **s1, char *s2)
 {
 	char	*tmp;
 
@@ -26,7 +26,7 @@ void	ft_strjoinnfree(char **s1, char *s2)
 	*s1 = tmp;
 }
 
-int	matches(char *s, char *match)
+static int	matches(char *s, char *match)
 {
 	size_t	i;
 	size_t	j;
@@ -43,16 +43,33 @@ int	matches(char *s, char *match)
 	{
 		if (match[j] == '*')
 		{
-			++j;
+			while (match[j] == '*')
+				++j;
 			while (++i && i < slen && j < matchlen && s[i] != match[j])
 				;
 		}
-		if (s[i] != match[j])
+		if (s[i++] != match[j++])
 			return (0);
-		++i;
-		++j;
 	}
 	return (s[i] == 0);
+}
+
+static char	**glob_impl(DIR *dir, char *match, char **result)
+{
+	struct dirent	*dirent;
+	char			*file;
+
+	dirent = readdir(dir);
+	if (dirent == NULL)
+		return (NULL);
+	file = dirent->d_name;
+	if (matches(file, match))
+	{
+		if (*result)
+			ft_strjoinnfree(result, " ");
+		ft_strjoinnfree(result, file);
+	}
+	return (result);
 }
 
 char	*glob(char *match)
@@ -60,8 +77,6 @@ char	*glob(char *match)
 	char			*pwd;
 	DIR				*dir;
 	char			*result;
-	char			*file;
-	struct dirent	*dirent;
 
 	if (ft_strchr(match, '/') && ft_strchr(match, '*'))
 		return (NULL);
@@ -71,18 +86,8 @@ char	*glob(char *match)
 	if (dir == NULL)
 		return (NULL);
 	while (1)
-	{
-		dirent = readdir(dir);
-		if (dirent == NULL)
+		if (!glob_impl(dir, match, &result))
 			break ;
-		file = dirent->d_name;
-		if (matches(file, match))
-		{
-			if (result)
-				ft_strjoinnfree(&result, " ");
-			ft_strjoinnfree(&result, file);
-		}
-	}
 	free(pwd);
 	closedir(dir);
 	return (result);
