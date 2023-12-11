@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/10 23:11:46 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/11 12:56:50 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ static int	get_env(char *str, char **env)
 
 	*env = NULL;
 	path_len = get_env_len(str);
-	path = strndup(str, path_len);
+	path = ft_strndup(str, path_len);
 	if (!path)
 		return (EXIT_FAILURE);
 	env_static = getenv(path);
 	free(path);
 	if (!env_static)
 		return (EXIT_SUCCESS);
-	*env = strdup(env_static);
+	*env = ft_strdup(env_static);
 	if (!env)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
