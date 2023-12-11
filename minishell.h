@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/11 15:25:58 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/11 16:27:33 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <signal.h>
+# include <dirent.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "libft/libft.h"
@@ -57,5 +58,8 @@ int		builtin_env(char **argv);
 int		builtin_echo(char **argv);
 int		builtin_unset(char **argv);
 int		builtin_export(char **argv);
+
+// glob.c
+char	*glob(char *match);
 
 #endif

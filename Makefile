@@ -15,6 +15,7 @@ SRC			= \
 			builtins/unset.c \
 			builtins/export.c \
 			signals.c \
+			glob.c \
 			env.c
 
 OBJ 		= $(SRC:.c=.o)
