@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:11:06 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/11 18:53:21 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/11 20:17:32 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static int	matches(char *s, char *match)
 		{
 			while (match[j] == '*')
 				++j;
-			while (++i && i < slen && j < matchlen && s[i] != match[j])
-				;
+			while (i < slen && j < matchlen && s[i] != match[j])
+				++i;
 		}
 		if (s[i++] != match[j++])
 			return (0);
@@ -54,14 +54,14 @@ static int	matches(char *s, char *match)
 	return (s[i] == 0);
 }
 
-static char	**glob_impl(DIR *dir, char *match, char **result)
+static t_should_continue	glob_impl(DIR *dir, char *match, char **result)
 {
 	struct dirent	*dirent;
 	char			*file;
 
 	dirent = readdir(dir);
 	if (dirent == NULL)
-		return (NULL);
+		return (SHOULD_NOT_CONTINUE);
 	file = dirent->d_name;
 	if (matches(file, match))
 	{
@@ -69,7 +69,7 @@ static char	**glob_impl(DIR *dir, char *match, char **result)
 			ft_strjoinnfree(result, " ");
 		ft_strjoinnfree(result, file);
 	}
-	return (result);
+	return (SHOULD_CONTINUE);
 }
 
 char	*glob(char *match)
