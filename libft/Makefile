@@ -42,10 +42,10 @@ SRC 		= bst/ft_bstchr.c\
 			  lst/ft_lstmap.c\
 			  lst/ft_lstnew.c\
 			  lst/ft_lstnext_roll.c\
+			  lst/ft_lstremove.c\
 			  lst/ft_lstsize.c\
 			  lst/ft_lstsort.c\
 			  lst/ft_lstsort_merge.c\
-			  lst/ft_lstremove.c\
 			  math/ft_exp.c\
 			  mem/ft_bzero.c\
 			  mem/ft_calloc.c\

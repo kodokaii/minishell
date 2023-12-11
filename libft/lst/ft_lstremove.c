@@ -3,38 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstremove.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 08:11:51 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/10 15:22:49 by cgodard          ###   ########.fr       */
+/*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
+/*   Updated: 2023/12/11 12:39:51 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-void	ft_lstremove(t_list **lst, t_list *to_remove, void (*del)(void *))
+void	ft_lstremove(t_list	**lst, void (*del)())
 {
-	t_list	*mylst;
+	t_list	*tmp;
 
-	if (lst == NULL || to_remove == NULL)
-		return ;
-	if (*lst && *lst == to_remove)
+	if (*lst)
 	{
-		*lst = (*lst)->next;
-		del(to_remove->data);
-		free(to_remove);
-		return ;
-	}
-	mylst = *lst;
-	while (mylst->next)
-	{
-		if (mylst->next == to_remove)
-		{
-			mylst->next = to_remove->next;
-			del(to_remove->data);
-			free(to_remove);
-			break ;
-		}
-		mylst = mylst->next;
+		tmp = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = tmp;
 	}
 }

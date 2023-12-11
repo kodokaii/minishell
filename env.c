@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:11:27 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/10 16:36:46 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/11 12:47:36 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,12 @@ static int	varcmp(char *s1, char *s2)
 
 void	ft_unsetenv(char *name)
 {
-	t_list	*envp;
-	size_t	i;
+	t_list	**envp;
 
-	i = 0;
-	envp = *ft_envp(NULL);
-	while (envp)
-	{
-		if (varcmp((char *)envp->data, name))
-		{
-			ft_lstremove(ft_envp(NULL), envp, free);
-			break ;
-		}
-		envp = envp->next;
-	}
+	envp = ft_envp(NULL);
+	while (*envp && !varcmp((char *)(*envp)->data, name))
+		envp = &(*envp)->next;
+	ft_lstremove(envp, free);
 }
 
 void	ft_setenv(char *variable)

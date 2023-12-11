@@ -1,34 +1,49 @@
-OBJECTS = \
-		  minishell.o \
-		  builtins/handle.o \
-		  builtins/cd.o \
-		  builtins/pwd.o \
-		  builtins/exit.o \
-		  builtins/env.o \
-		  builtins/echo.o \
-		  builtins/unset.o \
-		  builtins/export.o \
-		  signals.o \
-		  env.o
+SRC			= \
+			parsing/env.c\
+			parsing/get_token.c\
+			parsing/lexing.c\
+			parsing/lexing_utilis.c\
+			parsing/parsing.c\
+			parsing/parsing_cleanup.c\
+			minishell.c\
+			builtins/handle.c\
+			builtins/cd.c\
+			builtins/pwd.c\
+			builtins/exit.c\
+			builtins/env.c\
+			builtins/echo.c\
+			builtins/unset.c\
+			builtins/export.c\
+			signals.c\
+			env.c
 
-LIBFT = libft/libft.a
+OBJ 		= $(SRC:.c=.o)
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -Ilibft -I.
-LDFLAGS = -lreadline
+FT			= libft
+LIBFT 		= $(FT)/libft.a
+
+CC 			= cc
+RM 			= rm -f
+CLONE		= git clone --depth=1
+CFLAGS 		= -Wall -Wextra -Werror -I.
+LDFLAGS 	= -lreadline
+
 ifeq ($(DEBUG), 1)
 CFLAGS += -g
 endif
 
-NAME = minishell
+NAME 		= minishell
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS) $(LIBFT)
+$(NAME): $(OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $^ -o $(NAME) $(LDFLAGS)
 
-$(LIBFT):
+$(LIBFT): $(FT)
 	$(MAKE) -C libft
+
+$(FT):
+	$(CLONE) https://github.com/kodokaii/libft_plus_plus.git $(FT)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -37,15 +52,18 @@ debug: fclean
 	$(MAKE) DEBUG=1 all
 
 clean: 
-	$(MAKE) -C libft $@
-	$(RM) $(OBJECTS)
+	if [ -d "$(FT)" ]; then $(MAKE) clean -C $(FT); fi
+	$(RM) $(OBJ)
 
 fclean: clean
-	$(MAKE) -C libft $@
+	$(RM) $(LIBFT)
 	$(RM) $(NAME)
+
+clear:
+	$(RM) -r $(FT)
 
 re: fclean all
 
 -include myrules.mk
 
-.PHONY: all debug clean fclean re
+.PHONY: all debug clean fclean clear re

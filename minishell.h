@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/10 16:44:37 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/11 11:52:48 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 # include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "libft.h"
+# include "libft/libft.h"
+# include "parsing/parsing.h"
 
 typedef enum e_should_continue
 {

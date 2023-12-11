@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/10 21:18:00 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/11 11:13:50 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct t_token
 	t_token_type	type;
 	char			*data;
 }	t_token;
+
+int				parsing(char *str);
 
 int				lexing(char *str, t_list **token_lst);
 char			*get_token(char *str, t_token *token);
