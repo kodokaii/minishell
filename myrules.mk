@@ -4,6 +4,7 @@ endif
 
 FILES = \
 	builtins/*.c \
+	parsing/*.c \
 	*.c
 
 ALLOWED_FUNCTIONS = \

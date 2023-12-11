@@ -1,0 +1,1730 @@
+[
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-Ilibft",
+            "-I.",
+            "-o",
+            "minishell.o",
+            "minishell.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell",
+        "file": "minishell.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "bst/ft_bstiter_prefix.o",
+            "bst/ft_bstiter_prefix.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "bst/ft_bstiter_prefix.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "convert/ft_split.o",
+            "convert/ft_split.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "convert/ft_split.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-Ilibft",
+            "-I.",
+            "-o",
+            "env.o",
+            "env.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell",
+        "file": "env.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstdup.o",
+            "lst/ft_lstdup.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstdup.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "buf/ft_buf_alloc.o",
+            "buf/ft_buf_alloc.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "buf/ft_buf_alloc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "mem/ft_malloc.o",
+            "mem/ft_malloc.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "mem/ft_malloc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "bst/ft_bstiter_suffix.o",
+            "bst/ft_bstiter_suffix.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "bst/ft_bstiter_suffix.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "convert/ft_atoi.o",
+            "convert/ft_atoi.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "convert/ft_atoi.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "bst/ft_bstchr.o",
+            "bst/ft_bstchr.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "bst/ft_bstchr.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "bst/ft_bstpush.o",
+            "bst/ft_bstpush.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "bst/ft_bstpush.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "mem/ft_memchrset.o",
+            "mem/ft_memchrset.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "mem/ft_memchrset.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "put/ft_putlst_fd.o",
+            "put/ft_putlst_fd.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "put/ft_putlst_fd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstsort_merge.o",
+            "lst/ft_lstsort_merge.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstsort_merge.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_strncmp.o",
+            "str/ft_strncmp.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_strncmp.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-Ilibft",
+            "-I.",
+            "-o",
+            "builtins/handle.o",
+            "builtins/handle.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell",
+        "file": "builtins/handle.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "pipex/ft_pipex.o",
+            "pipex/ft_pipex.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "pipex/ft_pipex.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-Ilibft",
+            "-I.",
+            "-o",
+            "parsing/get_token.o",
+            "parsing/get_token.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell",
+        "file": "parsing/get_token.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "mem/ft_memdup.o",
+            "mem/ft_memdup.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "mem/ft_memdup.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "convert/ft_strtoi.o",
+            "convert/ft_strtoi.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "convert/ft_strtoi.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "gnl/ft_read_line.o",
+            "gnl/ft_read_line.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "gnl/ft_read_line.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "printf/ft_printf.o",
+            "printf/ft_printf.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "printf/ft_printf.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "gnl/ft_gnl.o",
+            "gnl/ft_gnl.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "gnl/ft_gnl.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_strmapi.o",
+            "str/ft_strmapi.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_strmapi.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "bst/ft_bstiter_infix.o",
+            "bst/ft_bstiter_infix.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "bst/ft_bstiter_infix.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "convert/ft_nblen.o",
+            "convert/ft_nblen.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "convert/ft_nblen.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstremove.o",
+            "lst/ft_lstremove.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstremove.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstnext_roll.o",
+            "lst/ft_lstnext_roll.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstnext_roll.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "utils/ft_errloc.o",
+            "utils/ft_errloc.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "utils/ft_errloc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "mem/ft_memcpy.o",
+            "mem/ft_memcpy.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "mem/ft_memcpy.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "mem/ft_memmove.o",
+            "mem/ft_memmove.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "mem/ft_memmove.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "put/ft_putstr_fd.o",
+            "put/ft_putstr_fd.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "put/ft_putstr_fd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_tolower.o",
+            "str/ft_tolower.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_tolower.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstdelone.o",
+            "lst/ft_lstdelone.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstdelone.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "utils/ft_min.o",
+            "utils/ft_min.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "utils/ft_min.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstchr.o",
+            "lst/ft_lstchr.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstchr.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "bst/ft_bstnew.o",
+            "bst/ft_bstnew.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "bst/ft_bstnew.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "put/ft_putchar_fd.o",
+            "put/ft_putchar_fd.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "put/ft_putchar_fd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_strnstr.o",
+            "str/ft_strnstr.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_strnstr.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstsize.o",
+            "lst/ft_lstsize.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstsize.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "mem/ft_realloc.o",
+            "mem/ft_realloc.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "mem/ft_realloc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "printf/ft_option.o",
+            "printf/ft_option.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "printf/ft_option.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "mem/ft_memset.o",
+            "mem/ft_memset.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "mem/ft_memset.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_strlcpy.o",
+            "str/ft_strlcpy.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_strlcpy.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_strlcat.o",
+            "str/ft_strlcat.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_strlcat.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstsort.o",
+            "lst/ft_lstsort.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstsort.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "put/ft_putnbr_fd.o",
+            "put/ft_putnbr_fd.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "put/ft_putnbr_fd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "utils/random.o",
+            "utils/random.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "utils/random.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstiter.o",
+            "lst/ft_lstiter.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstiter.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "put/ft_putendl_fd.o",
+            "put/ft_putendl_fd.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "put/ft_putendl_fd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_strjoin.o",
+            "str/ft_strjoin.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_strjoin.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "convert/ft_itoa.o",
+            "convert/ft_itoa.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "convert/ft_itoa.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstadd_front.o",
+            "lst/ft_lstadd_front.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstadd_front.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "utils/ft_basename.o",
+            "utils/ft_basename.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "utils/ft_basename.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "printf/ft_pointer.o",
+            "printf/ft_pointer.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "printf/ft_pointer.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_strlen.o",
+            "str/ft_strlen.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_strlen.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_strpbrk.o",
+            "str/ft_strpbrk.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_strpbrk.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "bst/ft_bstlevel_count.o",
+            "bst/ft_bstlevel_count.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "bst/ft_bstlevel_count.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_strcpy.o",
+            "str/ft_strcpy.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_strcpy.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstnew.o",
+            "lst/ft_lstnew.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstnew.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-Ilibft",
+            "-I.",
+            "-o",
+            "parsing/parsing_cleanup.o",
+            "parsing/parsing_cleanup.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell",
+        "file": "parsing/parsing_cleanup.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-Ilibft",
+            "-I.",
+            "-o",
+            "builtins/cd.o",
+            "builtins/cd.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell",
+        "file": "builtins/cd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstget.o",
+            "lst/ft_lstget.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstget.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-Ilibft",
+            "-I.",
+            "-o",
+            "builtins/unset.o",
+            "builtins/unset.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell",
+        "file": "builtins/unset.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-Ilibft",
+            "-I.",
+            "-o",
+            "builtins/exit.o",
+            "builtins/exit.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell",
+        "file": "builtins/exit.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "printf/ft_hexa.o",
+            "printf/ft_hexa.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "printf/ft_hexa.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "printf/ft_check.o",
+            "printf/ft_check.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "printf/ft_check.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-Ilibft",
+            "-I.",
+            "-o",
+            "parsing/fill_env.o",
+            "parsing/fill_env.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell",
+        "file": "parsing/fill_env.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-Ilibft",
+            "-I.",
+            "-o",
+            "parsing/parsing.o",
+            "parsing/parsing.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell",
+        "file": "parsing/parsing.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "printf/ft_dprintf.o",
+            "printf/ft_dprintf.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "printf/ft_dprintf.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "is/ft_isalnum.o",
+            "is/ft_isalnum.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "is/ft_isalnum.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_strtrim.o",
+            "str/ft_strtrim.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_strtrim.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstlast.o",
+            "lst/ft_lstlast.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstlast.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "is/ft_isdigit.o",
+            "is/ft_isdigit.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "is/ft_isdigit.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "convert/ft_word.o",
+            "convert/ft_word.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "convert/ft_word.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstiter_inv.o",
+            "lst/ft_lstiter_inv.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstiter_inv.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "is/ft_isalpha.o",
+            "is/ft_isalpha.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "is/ft_isalpha.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstis_sort.o",
+            "lst/ft_lstis_sort.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstis_sort.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "utils/ft_abs.o",
+            "utils/ft_abs.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "utils/ft_abs.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "pipex/ft_execve.o",
+            "pipex/ft_execve.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "pipex/ft_execve.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-Ilibft",
+            "-I.",
+            "-o",
+            "signals.o",
+            "signals.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell",
+        "file": "signals.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "is/ft_isascii.o",
+            "is/ft_isascii.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "is/ft_isascii.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "math/ft_exp.o",
+            "math/ft_exp.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "math/ft_exp.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_strcmp.o",
+            "str/ft_strcmp.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_strcmp.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "utils/ft_argv.o",
+            "utils/ft_argv.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "utils/ft_argv.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstadd_back.o",
+            "lst/ft_lstadd_back.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstadd_back.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-Ilibft",
+            "-I.",
+            "-o",
+            "parsing/lexing.o",
+            "parsing/lexing.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell",
+        "file": "parsing/lexing.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "buf/ft_buf_write.o",
+            "buf/ft_buf_write.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "buf/ft_buf_write.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "printf/ft_parsing.o",
+            "printf/ft_parsing.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "printf/ft_parsing.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_striteri.o",
+            "str/ft_striteri.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_striteri.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "utils/ft_get_envp.o",
+            "utils/ft_get_envp.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "utils/ft_get_envp.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "bst/ft_bstclear.o",
+            "bst/ft_bstclear.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "bst/ft_bstclear.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "buf/ft_buf_free.o",
+            "buf/ft_buf_free.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "buf/ft_buf_free.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "mem/ft_memchr.o",
+            "mem/ft_memchr.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "mem/ft_memchr.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-Ilibft",
+            "-I.",
+            "-o",
+            "builtins/pwd.o",
+            "builtins/pwd.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell",
+        "file": "builtins/pwd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "utils/ft_max.o",
+            "utils/ft_max.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "utils/ft_max.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstmap.o",
+            "lst/ft_lstmap.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstmap.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "lst/ft_lstclear.o",
+            "lst/ft_lstclear.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "lst/ft_lstclear.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "put/ft_putstrn_fd.o",
+            "put/ft_putstrn_fd.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "put/ft_putstrn_fd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "shell/ft_heredoc.o",
+            "shell/ft_heredoc.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "shell/ft_heredoc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "buf/ft_buf_realloc.o",
+            "buf/ft_buf_realloc.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "buf/ft_buf_realloc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "printf/ft_integer.o",
+            "printf/ft_integer.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "printf/ft_integer.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_strdup.o",
+            "str/ft_strdup.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_strdup.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "is/ft_isspace.o",
+            "is/ft_isspace.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "is/ft_isspace.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-Ilibft",
+            "-I.",
+            "-o",
+            "parsing/lexing_utilis.o",
+            "parsing/lexing_utilis.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell",
+        "file": "parsing/lexing_utilis.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_substr.o",
+            "str/ft_substr.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_substr.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "put/ft_putnbr_base_fd.o",
+            "put/ft_putnbr_base_fd.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "put/ft_putnbr_base_fd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-Ilibft",
+            "-I.",
+            "-o",
+            "builtins/echo.o",
+            "builtins/echo.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell",
+        "file": "builtins/echo.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "shell/ft_which.o",
+            "shell/ft_which.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "shell/ft_which.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "mem/ft_calloc.o",
+            "mem/ft_calloc.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "mem/ft_calloc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-Ilibft",
+            "-I.",
+            "-o",
+            "builtins/env.o",
+            "builtins/env.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell",
+        "file": "builtins/env.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "convert/ft_atof.o",
+            "convert/ft_atof.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "convert/ft_atof.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "utils/ft_swap.o",
+            "utils/ft_swap.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "utils/ft_swap.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_strndup.o",
+            "str/ft_strndup.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_strndup.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_strchr.o",
+            "str/ft_strchr.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_strchr.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "mem/ft_memcmp.o",
+            "mem/ft_memcmp.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "mem/ft_memcmp.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_toupper.o",
+            "str/ft_toupper.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_toupper.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "str/ft_strrchr.o",
+            "str/ft_strrchr.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "str/ft_strrchr.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-Ilibft",
+            "-I.",
+            "-o",
+            "builtins/export.o",
+            "builtins/export.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell",
+        "file": "builtins/export.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "is/ft_isprint.o",
+            "is/ft_isprint.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "is/ft_isprint.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            "mem/ft_bzero.o",
+            "mem/ft_bzero.c"
+        ],
+        "directory": "/home/nlaerema/Desktop/minishell/libft",
+        "file": "mem/ft_bzero.c"
+    }
+]

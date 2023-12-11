@@ -1,20 +1,20 @@
 SRC			= \
-			parsing/fill_env.c\
-			parsing/get_token.c\
-			parsing/lexing.c\
-			parsing/lexing_utilis.c\
-			parsing/parsing.c\
-			parsing/parsing_cleanup.c\
-			minishell.c\
-			builtins/handle.c\
-			builtins/cd.c\
-			builtins/pwd.c\
-			builtins/exit.c\
-			builtins/env.c\
-			builtins/echo.c\
-			builtins/unset.c\
-			builtins/export.c\
-			signals.c\
+			parsing/fill_env.c \
+			parsing/get_token.c \
+			parsing/lexing.c \
+			parsing/lexing_utils.c \
+			parsing/parsing.c \
+			parsing/parsing_cleanup.c \
+			minishell.c \
+			builtins/handle.c \
+			builtins/cd.c \
+			builtins/pwd.c \
+			builtins/exit.c \
+			builtins/env.c \
+			builtins/echo.c \
+			builtins/unset.c \
+			builtins/export.c \
+			signals.c \
 			env.c
 
 OBJ 		= $(SRC:.c=.o)
@@ -23,9 +23,8 @@ FT			= libft
 LIBFT 		= $(FT)/libft.a
 
 CC 			= cc
-RM 			= rm -f
 CLONE		= git clone --depth=1
-CFLAGS 		= -Wall -Wextra -Werror -I.
+CFLAGS 		= -Wall -Wextra -Werror -Ilibft -I.
 LDFLAGS 	= -lreadline
 
 ifeq ($(DEBUG), 1)
