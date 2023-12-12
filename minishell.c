@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/11 15:18:38 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:25:47 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static t_should_continue	handle_input(char *input, t_should_free should_free)
 {
 	char	**argv;
-	t_list	*files;
 
 	if (input == NULL)
 		return (ft_putchar_fd('\n', 1), SHOULD_NOT_CONTINUE);
@@ -25,13 +24,6 @@ static t_should_continue	handle_input(char *input, t_should_free should_free)
 	add_history(input);
 	handle_builtins(argv);
 	parsing(input);
-	files = glob(input);
-	while (files)
-	{
-		printf("%s ", (char *)files->data);
-		files = files->next;
-	}
-	ft_lstclear(&files, free);
 	if (should_free)
 		free(input);
 	ft_split_free(argv);

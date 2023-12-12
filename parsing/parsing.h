@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/11 15:39:12 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/12 19:03:34 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ t_bool			in_word(char *str, t_quote *quote);
 t_bool			in_bracket(char *str);
 
 void			free_token(t_token *token);
+void			free_cmd(t_cmd *cmd);
 
 #endif
