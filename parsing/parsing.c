@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/12 19:05:23 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/12 19:13:00 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	open_fds(t_token *token, t_cmd *cmd)
 	}
 }
 
-static void	process_cmd(t_list *token_list, t_list **command_line)
+static void	process_cmd(t_list **token_list, t_list **command_line)
 {
 	t_cmd	*cmd;
 	char	**argv;
@@ -87,19 +87,19 @@ static void	process_cmd(t_list *token_list, t_list **command_line)
 
 	i = 0;
 	cmd = malloc(sizeof(t_cmd));
-	argv = malloc((count_words_in_command(token_list) + 1) * sizeof(char *));
+	argv = malloc((count_words_in_command((*token_list)) + 1) * sizeof(char *));
 	cmd->fd_in = -1;
 	cmd->fd_out = -1;
 	cmd->argv = argv;
-	while (token_list)
+	while (*token_list)
 	{
-		token = token_list->data;
-		if (token_list && is_command_separator_command(token))
+		token = (*token_list)->data;
+		if ((*token_list) && is_command_separator_command(token))
 			break ;
 		if (token->type == TOKEN_WORD)
 			argv[i++] = token->data;
 		open_fds(token, cmd);
-		token_list = token_list->next;
+		*token_list = (*token_list)->next;
 	}
 	argv[i] = 0;
 	if (*command_line == NULL)
@@ -136,7 +136,7 @@ static void	process_tokens(t_list *token_list, t_list **command_line)
 			syntax_error(token_list->data);
 			break ;
 		}
-		process_cmd(token_list, command_line);
+		process_cmd(&token_list, command_line);
 		if (token_list)
 			token_list = token_list->next;
 	}

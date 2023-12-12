@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/12 19:03:34 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/12 19:13:40 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,15 @@ typedef struct t_token
 	t_token_type	type;
 	char			*data;
 }	t_token;
+
+typedef struct s_cmd
+{
+	int		fd_in;
+	char	**argv;
+	pid_t	pid;
+	int		exit_code;
+	int		fd_out;
+}			t_cmd;
 
 int				parsing(char *str);
 

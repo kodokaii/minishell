@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/12 15:25:09 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/12 19:13:36 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,6 @@ typedef enum e_should_free
 	SHOULD_NOT_FREE = 0,
 	SHOULD_FREE = 1,
 }	t_should_free;
-
-typedef struct s_cmd
-{
-	int		fd_in;
-	char	**argv;
-	pid_t	pid;
-	int		exit_code;
-	int		fd_out;
-}			t_cmd;
 
 // signals.c
 void	setup_signals(void);
