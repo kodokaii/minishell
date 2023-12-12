@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/12 19:28:16 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/12 21:09:53 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,42 @@ static void	print_cmd(t_cmd *cmd)
 	ft_printf("\nfd in: %d\nfd out: %d\n", cmd->fd_in, cmd->fd_out);
 }
 
+static int	reporting_open(char *filename, int flags, int mode)
+{
+	int	fd;
+
+	fd = open(filename, flags, mode);
+	if (fd < 0)
+	{
+		ft_dprintf(STDERR_FILENO, PROGRAM_NAME": failed to open %s: %s\n",
+			filename, strerror(errno));
+	}
+	return (fd);
+}
+
 static void	open_fds(t_token *token, t_cmd *cmd)
 {
 	int	fd;
 
 	if (token->type == TOKEN_IO_OUT)
 	{
-		fd = open(token->data, O_CREAT | O_TRUNC | O_WRONLY, 0644);
+		fd = reporting_open(token->data, O_CREAT | O_TRUNC | O_WRONLY, 0644);
+		if (fd < 0)
+			cmd->fd_out_failed = 1;
 		cmd->fd_out = fd;
 	}
 	else if (token->type == TOKEN_IO_IN)
 	{
-		fd = open(token->data, O_RDONLY);
+		fd = reporting_open(token->data, O_RDONLY, 0);
+		if (fd < 0)
+			cmd->fd_in_failed = 1;
 		cmd->fd_in = fd;
 	}
 	else if (token->type == TOKEN_IO_APPEND)
 	{
-		fd = open(token->data, O_CREAT | O_APPEND, 0644);
+		fd = reporting_open(token->data, O_CREAT | O_APPEND, 0644);
+		if (fd < 0)
+			cmd->fd_in_failed = 1;
 		cmd->fd_in = fd;
 	}
 }
@@ -86,7 +105,8 @@ static t_cmd	*init_cmd(t_list *token_list)
 	cmd->argv = malloc((count_words_in_command((token_list)) + 1)
 			* sizeof(char *));
 	cmd->fd_in = -1;
-	cmd->fd_out = -1;
+	cmd->fd_in_failed = 0;
+	cmd->fd_out_failed = 0;
 	return (cmd);
 }
 
@@ -109,10 +129,10 @@ static void	process_cmd(t_list **token_list, t_list **command_line)
 		*token_list = (*token_list)->next;
 	}
 	cmd->argv[i] = 0;
-	if (*command_line == NULL)
+	if (*command_line == NULL && cmd->fd_in == -1 && !cmd->fd_in_failed)
 		cmd->fd_in = STDIN_FILENO;
 	ft_lstadd_back(command_line, ft_lstnew(cmd));
-	if (*token_list == NULL)
+	if (*token_list == NULL && cmd->fd_out == -1 && !cmd->fd_out_failed)
 		cmd->fd_out = STDOUT_FILENO;
 }
 
