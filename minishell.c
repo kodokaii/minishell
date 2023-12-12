@@ -15,6 +15,7 @@
 static t_should_continue	handle_input(char *input, t_should_free should_free)
 {
 	char	**argv;
+	t_list	*files;
 
 	if (input == NULL)
 		return (ft_putchar_fd('\n', 1), SHOULD_NOT_CONTINUE);
@@ -24,6 +25,13 @@ static t_should_continue	handle_input(char *input, t_should_free should_free)
 	add_history(input);
 	handle_builtins(argv);
 	parsing(input);
+	files = glob(input);
+	while (files)
+	{
+		printf("%s ", (char *)files->data);
+		files = files->next;
+	}
+	ft_lstclear(&files, free);
 	if (should_free)
 		free(input);
 	ft_split_free(argv);

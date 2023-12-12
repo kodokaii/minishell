@@ -60,6 +60,6 @@ int		builtin_unset(char **argv);
 int		builtin_export(char **argv);
 
 // glob.c
-char	*glob(char *match);
+t_list	*glob(char *match);
 
 #endif

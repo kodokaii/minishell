@@ -12,20 +12,6 @@
 
 #include "minishell.h"
 
-static void	ft_strjoinnfree(char **s1, char *s2)
-{
-	char	*tmp;
-
-	if (*s1 == NULL)
-	{
-		*s1 = ft_strdup(s2);
-		return ;
-	}
-	tmp = ft_strjoin(*s1, s2);
-	free(*s1);
-	*s1 = tmp;
-}
-
 static int	matches(char *s, char *match)
 {
 	size_t	i;
@@ -54,7 +40,7 @@ static int	matches(char *s, char *match)
 	return (s[i] == 0);
 }
 
-static t_should_continue	glob_impl(DIR *dir, char *match, char **result)
+static t_should_continue	glob_impl(DIR *dir, char *match, t_list **result)
 {
 	struct dirent	*dirent;
 	char			*file;
@@ -64,19 +50,15 @@ static t_should_continue	glob_impl(DIR *dir, char *match, char **result)
 		return (SHOULD_NOT_CONTINUE);
 	file = dirent->d_name;
 	if (matches(file, match))
-	{
-		if (*result)
-			ft_strjoinnfree(result, " ");
-		ft_strjoinnfree(result, file);
-	}
+		ft_lstadd_back(result, ft_lstnew(file));
 	return (SHOULD_CONTINUE);
 }
 
-char	*glob(char *match)
+t_list	*glob(char *match)
 {
-	char			*pwd;
-	DIR				*dir;
-	char			*result;
+	char	*pwd;
+	DIR		*dir;
+	t_list	*result;
 
 	if (ft_strchr(match, '/') && ft_strchr(match, '*'))
 		return (NULL);
