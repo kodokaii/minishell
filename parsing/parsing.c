@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/12 21:09:53 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/12 23:52:52 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,6 @@ static size_t	count_words_in_command(t_list *command_line)
 		command_line = command_line->next;
 	}
 	return (i);
-}
-
-static void	print_cmd(t_cmd *cmd)
-{
-	size_t	i;
-
-	i = 0;
-	ft_printf("argv: ");
-	while (cmd->argv[i])
-		ft_printf("%s ", cmd->argv[i++]);
-	ft_printf("\nfd in: %d\nfd out: %d\n", cmd->fd_in, cmd->fd_out);
 }
 
 static int	reporting_open(char *filename, int flags, int mode)
@@ -105,6 +94,7 @@ static t_cmd	*init_cmd(t_list *token_list)
 	cmd->argv = malloc((count_words_in_command((token_list)) + 1)
 			* sizeof(char *));
 	cmd->fd_in = -1;
+	cmd->fd_out = -1;
 	cmd->fd_in_failed = 0;
 	cmd->fd_out_failed = 0;
 	return (cmd);
@@ -124,16 +114,16 @@ static void	process_cmd(t_list **token_list, t_list **command_line)
 		if ((*token_list) && is_command_separator_command(token))
 			break ;
 		if (token->type == TOKEN_WORD)
-			cmd->argv[i++] = token->data;
+			cmd->argv[i++] = ft_strdup(token->data);
 		open_fds(token, cmd);
 		*token_list = (*token_list)->next;
 	}
 	cmd->argv[i] = 0;
 	if (*command_line == NULL && cmd->fd_in == -1 && !cmd->fd_in_failed)
 		cmd->fd_in = STDIN_FILENO;
-	ft_lstadd_back(command_line, ft_lstnew(cmd));
 	if (*token_list == NULL && cmd->fd_out == -1 && !cmd->fd_out_failed)
 		cmd->fd_out = STDOUT_FILENO;
+	ft_lstadd_back(command_line, ft_lstnew(cmd));
 }
 
 static int	any_error(t_list *token_list)
@@ -169,17 +159,15 @@ static void	process_tokens(t_list *token_list, t_list **command_line)
 	}
 }
 
-int	parsing(char *str)
+t_list	*parse(char *str)
 {
 	t_list	*token_list;
 	t_list	*command_line;
 
 	if (lexing(str, &token_list) || any_error(token_list))
-		return (ft_lstclear(&token_list, free_token), EXIT_FAILURE);
+		return (ft_lstclear(&token_list, free_token), NULL);
 	command_line = NULL;
 	process_tokens(token_list, &command_line);
-	ft_putlst_fd(command_line, print_cmd, STDOUT_FILENO);
 	ft_lstclear(&token_list, free_token);
-	ft_lstclear(&command_line, free_cmd);
-	return (EXIT_SUCCESS);
+	return (command_line);
 }

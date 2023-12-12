@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/12 21:05:15 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/12 22:41:42 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_cmd
 	int		fd_out_failed;
 }			t_cmd;
 
-int				parsing(char *str);
+t_list			*parse(char *str);
 
 int				lexing(char *str, t_list **token_lst);
 char			*get_token(char *str, t_token *token);
