@@ -1,5 +1,5 @@
 minishell
-*.swp
+.*.swp
 init
 *.o
 *.a
