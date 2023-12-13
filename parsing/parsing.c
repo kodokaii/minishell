@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/11 15:09:18 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/13 02:12:28 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,7 @@ int	parsing(char *str)
 {
 	t_list	*token_list;
 
-	if (lexing(str, &token_list))
-	{
-		ft_printf("Error !\n");
-		return (EXIT_FAILURE);
-	}
+	lexing(str, &token_list);
 	ft_putlst_fd(token_list, print_token, STDOUT_FILENO);
 	ft_printf("\n");
 	ft_lstclear(&token_list, free_token);

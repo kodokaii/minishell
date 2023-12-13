@@ -25,6 +25,7 @@ SRC 		= bst/ft_bstchr.c\
 			  is/ft_isalnum.c\
 			  is/ft_isalpha.c\
 			  is/ft_isascii.c\
+			  is/ft_isblank.c\
 			  is/ft_isdigit.c\
 			  is/ft_isprint.c\
 			  is/ft_isspace.c\
@@ -77,6 +78,7 @@ SRC 		= bst/ft_bstchr.c\
 			  put/ft_putstrn_fd.c\
 			  shell/ft_heredoc.c\
 			  shell/ft_which.c\
+			  str/ft_strcat.c\
 			  str/ft_strchr.c\
 			  str/ft_strcmp.c\
 			  str/ft_strcpy.c\

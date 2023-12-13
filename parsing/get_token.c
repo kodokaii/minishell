@@ -6,96 +6,70 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/10 23:01:10 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/13 03:08:42 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static char	*init_quote(char *str, t_quote *quote)
+static char	*_get_meta(t_str_quoted	*str_quoted, size_t size)
 {
-	*quote = QUOTE_NONE;
-	if (str[0] == '\'' || str[0] == '\"')
-	{
-		if (str[0] == '\'')
-			*quote = QUOTE_SINGLE;
-		else
-			*quote = QUOTE_DOUBLE;
-		return (str + 1);
-	}
-	return (str);
+	char	*str;
+
+	str = get_str(str_quoted);
+	forward_char(str_quoted, size);
+	return (ft_strndup(str, size));
 }
 
-static char	*get_word(char *str, t_token *token)
+static char	*_get_next_word(t_str_quoted *str_quoted, size_t offset)
 {
-	t_quote	quote;
-	char	*with_env;
+	forward_char(str_quoted, offset);
+	return (get_word(str_quoted));
+}
+
+static char	*get_subshell(t_str_quoted *str_quoted)
+{
+	t_uint	bracket_count;
+	char	*str;
 	size_t	i;
 
 	i = 0;
-	str = init_quote(str, &quote);
-	while (in_word(str + i, &quote))
-		i++;
-	token->data = ft_strndup(str, i);
-	if (!token->data)
-		return (NULL);
-	if (quote != QUOTE_SINGLE)
+	bracket_count = 1;
+	str = get_str(str_quoted) + 1;
+	while (str[i] && bracket_count)
 	{
-		with_env = fill_env(token->data);
-		free(token->data);
-		if (!with_env)
-			return (NULL);
-		token->data = with_env;
+		if (str[i] == '(')
+			bracket_count++;
+		if (str[i] == ')')
+			bracket_count--;
+		if (bracket_count)
+			i++;
 	}
-	if (str[i] == '\'' || str[i] == '\"')
-		i++;
-	return (str + i);
+	forward_char(str_quoted, i + 2);
+	return (ft_strndup(str, i));
 }
 
-static char	*get_subshell(char *str, t_token *token)
+void	get_token(t_str_quoted	*str_quoted, t_token *token)
 {
-	size_t	i;
-
-	i = 0;
-	while (in_bracket(str + i))
-		i++;
-	token->data = ft_strndup(str, i);
-	if (!token->data)
-		return (NULL);
-	if (str[i])
-		i++;
-	return (str + i);
-}
-
-static char	*get_error(char *str, t_token *token)
-{
-	token->data = ft_strndup(str, 1);
-	if (!token->data)
-		return (NULL);
-	return (str + 1);
-}
-
-char	*get_token(char *str, t_token *token)
-{
-	token->data = NULL;
-	token->type = get_token_type(str);
+	token->type = get_token_type(get_str(str_quoted));
 	if (token->type == TOKEN_AND)
-		return (str + 2);
-	if (token->type == TOKEN_OR)
-		return (str + 2);
-	if (token->type == TOKEN_PIPE)
-		return (str + 1);
-	if (token->type == TOKEN_IO_HEREDOC)
-		return (get_word(skip_blank(str + 2), token));
-	if (token->type == TOKEN_IO_APPEND)
-		return (get_word(skip_blank(str + 2), token));
-	if (token->type == TOKEN_IO_IN)
-		return (get_word(skip_blank(str + 1), token));
-	if (token->type == TOKEN_IO_OUT)
-		return (get_word(skip_blank(str + 1), token));
-	if (token->type == TOKEN_SUBSHELL)
-		return (get_subshell(str + 1, token));
-	if (token->type == TOKEN_WORD)
-		return (get_word(str, token));
-	return (get_error(str, token));
+		token->data = _get_meta(str_quoted, 2);
+	else if (token->type == TOKEN_OR)
+		token->data = _get_meta(str_quoted, 2);
+	else if (token->type == TOKEN_PIPE)
+		token->data = _get_meta(str_quoted, 1);
+	else if (token->type == TOKEN_IO_HEREDOC)
+		token->data = _get_next_word(str_quoted, 2);
+	else if (token->type == TOKEN_IO_APPEND)
+		token->data = _get_next_word(str_quoted, 2);
+	else if (token->type == TOKEN_IO_IN)
+		token->data = _get_next_word(str_quoted, 1);
+	else if (token->type == TOKEN_IO_OUT)
+		token->data = _get_next_word(str_quoted, 1);
+	else if (token->type == TOKEN_SUBSHELL)
+		token->data = get_subshell(str_quoted);
+	else if (token->type == TOKEN_WORD)
+		token->data = get_word(str_quoted);
+	else
+		token->data = _get_meta(str_quoted, 1);
 }

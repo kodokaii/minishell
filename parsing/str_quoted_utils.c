@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexing.c                                           :+:      :+:    :+:   */
+/*   str_quoted_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/13 02:32:29 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/13 03:01:51 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	lexing(char *str, t_list **token_lst)
+char	*get_str(t_str_quoted *str_quoted)
 {
-	t_token			*token;
-	t_str_quoted	str_quoted;
+	return (str_quoted->str + str_quoted->index);
+}
 
-	*token_lst = NULL;
-	parse_str_quoted(str, &str_quoted);
-	while (get_str(&str_quoted)[0])
-	{
-		token = malloc(sizeof(t_token));
-		get_token(&str_quoted, token);
-		ft_lstadd_back(token_lst, ft_lstnew(token));
-		forward_char(&str_quoted, count_blank(get_str(&str_quoted)));
-	}
-	free_str_quoted(&str_quoted);
+t_quote	*get_quote(t_str_quoted *str_quoted)
+{
+	return (str_quoted->quote + str_quoted->index);
+}
+
+void	forward_char(t_str_quoted *str_quoted, size_t i)
+{
+	while (i-- && str_quoted->str[str_quoted->index])
+		str_quoted->index += 1;
+}
+
+void	free_str_quoted(t_str_quoted *str_quoted)
+{
+	free(str_quoted->str);
+	free(str_quoted->quote);
 }

@@ -1,10 +1,13 @@
 SRC			= \
 			parsing/fill_env.c \
 			parsing/get_token.c \
+			parsing/get_word.c \
 			parsing/lexing.c \
 			parsing/lexing_utils.c \
 			parsing/parsing.c \
 			parsing/parsing_cleanup.c \
+			parsing/str_quoted.c \
+			parsing/str_quoted_utils.c \
 			minishell.c \
 			builtins/handle.c \
 			builtins/cd.c \
