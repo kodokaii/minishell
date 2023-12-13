@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
+/*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/13 10:09:47 by cgodard          ###   ########.fr       */
+/*   Created: 2023/12/13 10:32:01 by cgodard           #+#    #+#             */
+/*   Updated: 2023/12/13 10:32:05 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ t_list	*parse(char *str)
 	t_list	*token_list;
 	t_list	*command_line;
 
-	if (lexing(str, &token_list) || any_error(token_list))
+	lexing(str, &token_list);
+	if (any_error(token_list))
 		return (ft_lstclear(&token_list, free_token), NULL);
 	command_line = NULL;
 	process_tokens(token_list, &command_line);

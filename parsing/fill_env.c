@@ -6,13 +6,13 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/11 15:24:36 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/13 01:20:36 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static size_t	get_env_len(char *str)
+static size_t	_get_env_len(char *str)
 {
 	size_t	len;
 
@@ -24,94 +24,51 @@ static size_t	get_env_len(char *str)
 	return (len);
 }
 
-static int	get_env(char *str, char **env)
+static char	*_get_env(t_str_quoted *str_quoted)
 {
-	char	*env_static;
+	char	*env;
 	char	*path;
 	size_t	path_len;
 
-	*env = NULL;
-	path_len = get_env_len(str);
-	path = ft_strndup(str, path_len);
-	if (!path)
-		return (EXIT_FAILURE);
-	env_static = ft_getenv(path);
-	free(path);
-	if (!env_static)
-		return (EXIT_SUCCESS);
-	*env = ft_strdup(env_static);
+	path_len = _get_env_len(get_str(str_quoted));
+	path = ft_strndup(get_str(str_quoted), path_len);
+	env = ft_getenv(path);
 	if (!env)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+		env = "";
+	free(path);
+	forward_char(str_quoted, path_len);
+	return (env);
 }
 
-static int	get_env_list(char *str, t_list **env_list, size_t *len)
+static void	_fill_quote(t_str_quoted *env_quoted, t_quote quote)
 {
-	t_list	*env_elem;
-	char	*env;
 	size_t	i;
 
 	i = 0;
-	*len = 0;
-	*env_list = NULL;
-	while (str[i])
+	while (env_quoted->str[i])
 	{
-		if (str[i++] == '$')
-		{
-			if (get_env(str + i, &env))
-				return (EXIT_FAILURE);
-			i += get_env_len(str + i);
-			env_elem = ft_lstnew(env);
-			if (!env_elem)
-				return (free(env), EXIT_FAILURE);
-			ft_lstadd_back(env_list, env_elem);
-			if (env)
-				*len += ft_strlen(env);
-		}
+		if (ft_isblank(env_quoted->str[i]) && quote == QUOTE_NONE)
+			env_quoted->quote[i] = QUOTE_NONE;
 		else
-			(*len)++;
+			env_quoted->quote[i] = QUOTE_SINGLE;
+		i++;
 	}
-	return (EXIT_SUCCESS);
 }
 
-void	env_cpy(char *str_env, char *str, t_list *env_list)
+void	fill_env(t_str_quoted *str_quoted)
 {
-	t_list	*current;
-	size_t	i;
+	t_str_quoted	env_quoted;
+	t_str_quoted	new_str_quoted;
+	t_quote			quote;
+	char			*env;
 
-	i = 0;
-	current = env_list;
-	while (*str)
-	{
-		if (*str == '$')
-		{
-			str++;
-			if (current->data)
-			{
-				ft_strcpy(str_env + i, current->data);
-				i += ft_strlen(current->data);
-			}
-			str += get_env_len(str);
-			current = current->next;
-		}
-		else
-			str_env[i++] = *(str++);
-	}
-	str_env[i] = '\0';
-}
-
-char	*fill_env(char *str)
-{
-	t_list	*env_list;
-	char	*str_env;
-	size_t	len;
-
-	if (get_env_list(str, &env_list, &len))
-		return (ft_lstclear(&env_list, free), NULL);
-	str_env = malloc(len + 1);
-	if (!str_env)
-		return (NULL);
-	env_cpy(str_env, str, env_list);
-	ft_lstclear(&env_list, free);
-	return (str_env);
+	quote = *get_quote(str_quoted);
+	forward_char(str_quoted, 1);
+	env = _get_env(str_quoted);
+	str_quoted_init(env, &env_quoted);
+	_fill_quote(&env_quoted, quote);
+	new_str_quoted = str_quoted_join(&env_quoted, str_quoted);
+	free_str_quoted(&env_quoted);
+	free_str_quoted(str_quoted);
+	*str_quoted = new_str_quoted;
 }

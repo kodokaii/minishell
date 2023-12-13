@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexing.c                                           :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/13 02:32:29 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/13 00:38:56 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../libft.h"
 
-void	lexing(char *str, t_list **token_lst)
+char	*ft_strcat(char *dst, char *src)
 {
-	t_token			*token;
-	t_str_quoted	str_quoted;
+	size_t	i;
+	size_t	j;
 
-	*token_lst = NULL;
-	parse_str_quoted(str, &str_quoted);
-	while (get_str(&str_quoted)[0])
-	{
-		token = malloc(sizeof(t_token));
-		get_token(&str_quoted, token);
-		ft_lstadd_back(token_lst, ft_lstnew(token));
-		forward_char(&str_quoted, count_blank(get_str(&str_quoted)));
-	}
-	free_str_quoted(&str_quoted);
+	j = 0;
+	i = ft_strlen(dst);
+	while (src[j])
+		dst[i++] = src[j++];
+	dst[i] = 0;
+	return (dst);
 }

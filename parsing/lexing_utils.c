@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexing_utilis.c                                    :+:      :+:    :+:   */
+/*   lexing_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/10 21:22:52 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/12 23:17:54 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,17 @@ t_token_type	get_token_type(char *str)
 
 char	*skip_blank(char *str)
 {
-	while (*str && ft_strchr(" \t", *str))
+	while (*str && ft_isblank(*str))
 		str++;
 	return (str);
 }
 
-t_bool	in_word(char *str, t_quote *quote)
+size_t	count_blank(char *str)
 {
-	if (str[0])
-	{
-		if (*quote == QUOTE_SINGLE && str[0] != '\'')
-			return (FT_TRUE);
-		if (*quote == QUOTE_DOUBLE && str[0] != '\"')
-			return (FT_TRUE);
-		if (str[0] == '\'' || str[0] == '\"')
-			return (FT_FALSE);
-		return (get_token_type(str) == TOKEN_WORD);
-	}
-	return (FT_FALSE);
-}
+	size_t	count;
 
-t_bool	in_bracket(char *str)
-{
-	return (str[0] && str[0] != ')');
+	count = 0;
+	while (str[count] && ft_isblank(str[count]))
+		count++;
+	return (count);
 }

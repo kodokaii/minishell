@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlaerema <nlaerema@student.42lehavre.fr>   +#+  +:+       +#+        */
+/*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/13 10:11:57 by cgodard          ###   ########.fr       */
+/*   Created: 2023/12/13 10:31:42 by cgodard           #+#    #+#             */
+/*   Updated: 2023/12/13 10:31:50 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 # define PARSING_H
 
 # include "minishell.h"
+# include "../libft/libft.h"
 
 typedef enum e_token_type
 {
+	TOKEN_ERROR,
 	TOKEN_WORD,
 	TOKEN_AND,
 	TOKEN_OR,
@@ -25,8 +27,7 @@ typedef enum e_token_type
 	TOKEN_IO_HEREDOC,
 	TOKEN_IO_OUT,
 	TOKEN_IO_APPEND,
-	TOKEN_SUBSHELL,
-	TOKEN_ERROR,
+	TOKEN_SUBSHELL
 }	t_token_type;
 
 typedef enum e_quote
@@ -35,6 +36,13 @@ typedef enum e_quote
 	QUOTE_SINGLE,
 	QUOTE_DOUBLE,
 }	t_quote;
+
+typedef struct s_str_quoted
+{
+	char	*str;
+	t_quote	*quote;
+	size_t	index;
+}	t_str_quoted;
 
 typedef struct t_token
 {
@@ -55,15 +63,25 @@ typedef struct s_cmd
 
 t_list			*parse(char *str);
 
-int				lexing(char *str, t_list **token_lst);
-char			*get_token(char *str, t_token *token);
+void			str_quoted_init(char *str, t_str_quoted *str_quoted);
+void			parse_str_quoted(char *str, t_str_quoted *str_quoted);
+t_str_quoted	str_quoted_join(t_str_quoted *str_quoted1,
+					t_str_quoted *str_quoted2);
 
-char			*fill_env(char *str);
+void			lexing(char *str, t_list **token_lst);
+void			get_token(t_str_quoted *str_quoted, t_token *token);
+char			*get_word(t_str_quoted *str_quoted);
+
+void			fill_env(t_str_quoted *str_quoted);
 
 t_token_type	get_token_type(char *str);
 char			*skip_blank(char *str);
-t_bool			in_word(char *str, t_quote *quote);
-t_bool			in_bracket(char *str);
+size_t			count_blank(char *str);
+
+char			*get_str(t_str_quoted *str_quoted);
+t_quote			*get_quote(t_str_quoted *str_quoted);
+void			forward_char(t_str_quoted *str_quoted, size_t i);
+void			free_str_quoted(t_str_quoted *str_quoted);
 
 void			free_token(t_token *token);
 void			free_cmd(t_cmd *cmd);
