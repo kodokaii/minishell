@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:08:59 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/13 10:12:19 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/13 12:35:07 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,7 @@ t_cmd	*init_cmd(t_list *token_list)
 	cmd = malloc(sizeof(t_cmd));
 	cmd->argv = malloc((count_words_in_command((token_list)) + 1)
 			* sizeof(char *));
-	cmd->fd_in = -1;
-	cmd->fd_out = -1;
-	cmd->fd_in_failed = 0;
-	cmd->fd_out_failed = 0;
+	cmd->fd_in = FD_UNSET;
+	cmd->fd_out = FD_UNSET;
 	return (cmd);
 }

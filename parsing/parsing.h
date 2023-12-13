@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:31:42 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/13 10:31:50 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/13 12:36:22 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "minishell.h"
 # include "../libft/libft.h"
+
+# define FD_UNSET -1
+# define FD_ERRORED -2
 
 typedef enum e_token_type
 {
@@ -50,16 +53,23 @@ typedef struct t_token
 	char			*data;
 }	t_token;
 
+typedef enum	e_control
+{
+	CONTROL_AND = 0,
+	CONTROL_OR = 1,
+	CONTROL_PIPE,
+	CONTROL_NONE,
+}	t_control;
+
 typedef struct s_cmd
 {
-	int		fd_in;
-	int		fd_in_failed;
-	char	**argv;
-	pid_t	pid;
-	int		exit_code;
-	int		fd_out;
-	int		fd_out_failed;
-}			t_cmd;
+	int			fd_in;
+	char		**argv;
+	pid_t		pid;
+	int			exit_code;
+	int			fd_out;
+	t_control	control;
+}				t_cmd;
 
 t_list			*parse(char *str);
 

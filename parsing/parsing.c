@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:32:01 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/13 10:32:05 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/13 12:41:19 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,23 @@ static void	open_fds(t_token *token, t_cmd *cmd)
 	if (token->type == TOKEN_IO_OUT)
 	{
 		fd = reporting_open(token->data, O_CREAT | O_TRUNC | O_WRONLY, 0644);
-		if (fd < 0)
-			cmd->fd_out_failed = 1;
-		cmd->fd_out = fd;
+		cmd->fd_out = FD_ERRORED;
+		if (fd > 0)
+			cmd->fd_out = fd;
 	}
 	else if (token->type == TOKEN_IO_IN)
 	{
 		fd = reporting_open(token->data, O_RDONLY, 0);
-		if (fd < 0)
-			cmd->fd_in_failed = 1;
-		cmd->fd_in = fd;
+		cmd->fd_in = FD_ERRORED;
+		if (fd > 0)
+			cmd->fd_in = fd;
 	}
 	else if (token->type == TOKEN_IO_APPEND)
 	{
 		fd = reporting_open(token->data, O_CREAT | O_APPEND, 0644);
-		if (fd < 0)
-			cmd->fd_in_failed = 1;
-		cmd->fd_in = fd;
+		cmd->fd_in = FD_ERRORED;
+		if (fd > 0)
+			cmd->fd_in = fd;
 	}
 }
 
@@ -58,9 +58,9 @@ static void	process_cmd(t_list **token_list, t_list **command_line)
 		*token_list = (*token_list)->next;
 	}
 	cmd->argv[i] = 0;
-	if (*command_line == NULL && cmd->fd_in == -1 && !cmd->fd_in_failed)
+	if (*command_line == NULL && cmd->fd_in == FD_UNSET)
 		cmd->fd_in = STDIN_FILENO;
-	if (*token_list == NULL && cmd->fd_out == -1 && !cmd->fd_out_failed)
+	if (*token_list == NULL && cmd->fd_out == FD_UNSET)
 		cmd->fd_out = STDOUT_FILENO;
 	ft_lstadd_back(command_line, ft_lstnew(cmd));
 }
