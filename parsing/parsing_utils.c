@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:08:59 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/13 12:35:07 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/13 14:13:23 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ t_cmd	*init_cmd(t_list *token_list)
 			* sizeof(char *));
 	cmd->fd_in = FD_UNSET;
 	cmd->fd_out = FD_UNSET;
+	cmd->control = CONTROL_NONE;
 	return (cmd);
 }

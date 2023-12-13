@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:32:01 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/13 12:41:19 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/13 14:07:11 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,18 @@ static void	open_fds(t_token *token, t_cmd *cmd)
 	}
 }
 
+static void	set_control(t_token *token, t_cmd *cmd)
+{
+	if (token->type == TOKEN_PIPE)
+		cmd->control = CONTROL_PIPE;
+	else if (token->type == TOKEN_OR)
+		cmd->control = CONTROL_OR;
+	else if (token->type == TOKEN_AND)
+		cmd->control = CONTROL_AND;
+	else
+		cmd->control = CONTROL_NONE;
+}
+
 static void	process_cmd(t_list **token_list, t_list **command_line)
 {
 	t_cmd	*cmd;
@@ -51,7 +63,10 @@ static void	process_cmd(t_list **token_list, t_list **command_line)
 	{
 		token = (*token_list)->data;
 		if ((*token_list) && is_command_separator_command(token))
+		{
+			set_control(token, cmd);
 			break ;
+		}
 		if (token->type == TOKEN_WORD)
 			cmd->argv[i++] = ft_strdup(token->data);
 		open_fds(token, cmd);
