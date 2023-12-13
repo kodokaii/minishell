@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:32:01 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/13 14:07:11 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/13 14:49:32 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,26 @@ static void	open_fds(t_token *token, t_cmd *cmd)
 {
 	int	fd;
 
-	if (token->type == TOKEN_IO_OUT)
+	if (token->type == TOKEN_IO_OUT && cmd->fd_in != FD_ERRORED)
 	{
 		fd = reporting_open(token->data, O_CREAT | O_TRUNC | O_WRONLY, 0644);
 		cmd->fd_out = FD_ERRORED;
 		if (fd > 0)
 			cmd->fd_out = fd;
 	}
-	else if (token->type == TOKEN_IO_IN)
+	else if (token->type == TOKEN_IO_IN && cmd->fd_out != FD_ERRORED)
 	{
 		fd = reporting_open(token->data, O_RDONLY, 0);
 		cmd->fd_in = FD_ERRORED;
 		if (fd > 0)
 			cmd->fd_in = fd;
 	}
-	else if (token->type == TOKEN_IO_APPEND)
+	else if (token->type == TOKEN_IO_APPEND && cmd->fd_in != FD_ERRORED)
 	{
 		fd = reporting_open(token->data, O_CREAT | O_APPEND, 0644);
-		cmd->fd_in = FD_ERRORED;
+		cmd->fd_out = FD_ERRORED;
 		if (fd > 0)
-			cmd->fd_in = fd;
+			cmd->fd_out = fd;
 	}
 }
 
