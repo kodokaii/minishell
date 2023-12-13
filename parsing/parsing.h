@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/12 22:41:42 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/13 10:11:57 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,12 @@ t_bool			in_bracket(char *str);
 
 void			free_token(t_token *token);
 void			free_cmd(t_cmd *cmd);
+
+// parsing_utils.c
+int				reporting_open(char *filename, int flags, int mode);
+int				is_command_separator_command(t_token *token);
+size_t			count_words_in_command(t_list *command_line);
+void			syntax_error(t_token *token);
+t_cmd			*init_cmd(t_list *token_list);
 
 #endif

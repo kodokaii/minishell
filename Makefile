@@ -4,6 +4,7 @@ SRC			= \
 			parsing/lexing.c \
 			parsing/lexing_utils.c \
 			parsing/parsing.c \
+			parsing/parsing_utils.c \
 			parsing/parsing_cleanup.c \
 			minishell.c \
 			builtins/handle.c \

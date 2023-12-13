@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/12 22:48:35 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/13 10:13:28 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	print_cmd(t_cmd *cmd)
 static t_should_continue	handle_input(char *input, t_should_free should_free)
 {
 	char	**argv;
-	//t_list	*command_line;
+	t_list	*command_line;
 
 	if (input == NULL)
 		return (ft_putchar_fd('\n', 1), SHOULD_NOT_CONTINUE);
@@ -35,9 +35,8 @@ static t_should_continue	handle_input(char *input, t_should_free should_free)
 		return (free(input), SHOULD_NOT_CONTINUE);
 	add_history(input);
 	handle_builtins(argv);
-	//command_line = parse(input);
-	//ft_putlst_fd(command_line, print_cmd, STDOUT_FILENO);
-	//ft_lstclear(&command_line, free_cmd);
+	command_line = parse(input);
+	ft_lstclear(&command_line, free_cmd);
 	if (should_free)
 		free(input);
 	ft_split_free(argv);
