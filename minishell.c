@@ -6,16 +6,27 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/13 02:50:55 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/13 03:14:12 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	print_cmd(t_cmd *cmd)
+{
+	size_t	i;
+
+	i = 0;
+	ft_printf("argv: ");
+	while (cmd->argv[i])
+		ft_printf("%s ", cmd->argv[i++]);
+	ft_printf("\nfd in: %d\nfd out: %d\n", cmd->fd_in, cmd->fd_out);
+}
+
 static t_should_continue	handle_input(char *input, t_should_free should_free)
 {
 	char	**argv;
-	t_list	*files;
+	//t_list	*command_line;
 
 	if (input == NULL)
 		return (ft_putchar_fd('\n', 1), SHOULD_NOT_CONTINUE);
@@ -24,14 +35,9 @@ static t_should_continue	handle_input(char *input, t_should_free should_free)
 		return (free(input), SHOULD_NOT_CONTINUE);
 	add_history(input);
 	handle_builtins(argv);
-	parsing(input);
-	files = glob(input);
-	while (files)
-	{
-		printf("%s ", (char *)files->data);
-		files = files->next;
-	}
-	ft_lstclear(&files, free);
+	//command_line = parse(input);
+	//ft_putlst_fd(command_line, print_cmd, STDOUT_FILENO);
+	//ft_lstclear(&command_line, free_cmd);
 	if (should_free)
 		free(input);
 	ft_split_free(argv);

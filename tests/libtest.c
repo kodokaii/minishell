@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 0000/00/00 00:00:00 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/10 16:58:51 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/12 23:20:12 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,12 +226,12 @@ void	assert_equal(char *s1, char *s2)
 {
 	if (s1 == NULL || s2 == NULL)
 		assert(s1 == s2);
-	assert(ft_strncmp(s1, s2, ft_strlen(s1)) == 0);
+	assert(ft_strcmp(s1, s2) == 0);
 }
 
 void	assert_nonequal(char *s1, char *s2)
 {
 	if (s1 == NULL || s2 == NULL)
 		assert(s1 != s2);
-	assert(ft_strncmp(s1, s2, ft_strlen(s1)));
+	assert(ft_strcmp(s1, s2));
 }

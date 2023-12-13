@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/13 01:44:54 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/13 03:12:02 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,18 @@ typedef struct t_token
 	char			*data;
 }	t_token;
 
-int				parsing(char *str);
+typedef struct s_cmd
+{
+	int		fd_in;
+	int		fd_in_failed;
+	char	**argv;
+	pid_t	pid;
+	int		exit_code;
+	int		fd_out;
+	int		fd_out_failed;
+}			t_cmd;
+
+t_list			*parse(char *str);
 
 void			str_quoted_init(char *str, t_str_quoted *str_quoted);
 void			parse_str_quoted(char *str, t_str_quoted *str_quoted);
@@ -73,5 +84,6 @@ void			forward_char(t_str_quoted *str_quoted, size_t i);
 void			free_str_quoted(t_str_quoted *str_quoted);
 
 void			free_token(t_token *token);
+void			free_cmd(t_cmd *cmd);
 
 #endif

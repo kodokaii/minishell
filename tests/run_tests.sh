@@ -6,6 +6,7 @@ CC=cc
 CFLAGS='-Wall -Werror -Wall -g'
 LIBTEST=-I"$cwd"
 LIBFT=-I"$cwd"/../libft
+OBJECTS=$(find "$cwd"/.. -name '*.o' -type f ! -name minishell.o)
 
 marker='Oh nuuuu!!! Leaks! OwO'
 
@@ -13,9 +14,9 @@ for file in "$cwd"/test_*.c; do
 	name="${file##*/}"
 	name="${file%%.c}"
 	$CC $CFLAGS \
-		"$LIBTEST" "$LIBFT" \
+		"$LIBTEST" -I"$cwd"/.. "$LIBFT" $OBJECTS \
 		"$cwd"/libtest.c "$cwd"/../libft/libft.a \
-		"$file"	-o "$name"
+		"$file"	-o "$name" -lreadline
 	trap 'rm -f "$name"' EXIT
 	logfile=$(mktemp)
 	trap 'rm -f "$logfile"' EXIT
