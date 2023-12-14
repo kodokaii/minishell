@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 19:58:18 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 14:13:57 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/14 22:58:02 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	builtin_cd(char **argv)
 
 	if (*argv == NULL)
 	{
-		dir = getenv("HOME");
+		dir = ft_getenv("HOME");
 		if (dir == NULL)
 			return (ft_dprintf(STDERR_FILENO,
 					PROGRAM_NAME": cd: missing $HOME\n"), 0);
