@@ -6,36 +6,11 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:32:01 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/14 19:10:53 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/14 21:45:42 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-void	print_token(t_token *token)
-{
-	ft_printf("%p\n", token);
-	if (token->type == TOKEN_WORD)
-		ft_printf("(WORD: \"%s\")", token->data);
-	if (token->type == TOKEN_AND)
-		ft_printf("(AND)");
-	if (token->type == TOKEN_OR)
-		ft_printf("(OR)");
-	if (token->type == TOKEN_PIPE)
-		ft_printf("(PIPE)");
-	if (token->type == TOKEN_IO_IN)
-		ft_printf("(IN: \"%s\")", token->data);
-	if (token->type == TOKEN_IO_HEREDOC)
-		ft_printf("(HEREDOC: \"%s\")", token->data);
-	if (token->type == TOKEN_IO_OUT)
-		ft_printf("(OUT: \"%s\")", token->data);
-	if (token->type == TOKEN_IO_APPEND)
-		ft_printf("(APPEND: \"%s\")", token->data);
-	if (token->type == TOKEN_SUBSHELL)
-		ft_printf("(SUBSHELL: \"%s\")", token->data);
-	if (token->type == TOKEN_ERROR)
-		ft_printf("(ERROR: \"%s\")", token->data);
-}
 
 static void	open_fds(t_token *token, t_cmd *cmd)
 {
@@ -110,7 +85,7 @@ static void	process_command_line(t_list *token_list, t_list **command_line)
 {
 	t_cmd_list	*cmd_list;
 	t_token		*token;
-	
+
 	while (token_list)
 	{
 		cmd_list = malloc(sizeof(t_cmd_list));
@@ -120,34 +95,13 @@ static void	process_command_line(t_list *token_list, t_list **command_line)
 		{
 			token = token_list->data;
 			if (token->type == TOKEN_AND)
-			   cmd_list->control = CONTROL_AND;
+				cmd_list->control = CONTROL_AND;
 			else if (token->type == TOKEN_OR)
 				cmd_list->control = CONTROL_OR;
 			token_list = token_list->next;
 		}
 		else
 			cmd_list->control = CONTROL_NONE;
-	}
-}
-
-void	print_command_line(t_list *command_line)
-{
-	t_list		*cmd;
-
-	while (command_line)
-	{
-		cmd = ((t_cmd_list *)command_line->data)->cmd;
-		while (cmd)
-		{
-			size_t	i;
-			i = 0;
-			while (((t_cmd *)cmd->data)->argv[i])
-				ft_printf("(%s) ", ((t_cmd *)cmd->data)->argv[i++]);
-			ft_printf("-> ");
-			cmd = cmd->next;
-		}
-		ft_printf("\n");
-		command_line = command_line->next;
 	}
 }
 
