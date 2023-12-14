@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:31:42 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 00:24:00 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/15 00:46:32 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "minishell.h"
 # include "../libft/libft.h"
+
+# define END_LINE "\n"
 
 typedef enum e_token_type
 {

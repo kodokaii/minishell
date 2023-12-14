@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/13 22:09:45 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/15 00:46:45 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char	*get_word(t_str_quoted *str_quoted)
 
 	ft_bzero(&word, sizeof(t_word));
 	forward_char(str_quoted, count_blank(get_str(str_quoted)));
+	if (!get_str(str_quoted)[0])
+		return (ft_strdup(END_LINE));
 	while (_in_word(get_str(str_quoted), *get_quote(str_quoted)))
 	{
 		if (get_quote(str_quoted)[0] != QUOTE_SINGLE
