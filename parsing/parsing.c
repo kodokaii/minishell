@@ -6,14 +6,15 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:32:01 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/14 03:08:27 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/14 19:10:53 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static void	print_token(t_token *token)
+void	print_token(t_token *token)
 {
+	ft_printf("%p\n", token);
 	if (token->type == TOKEN_WORD)
 		ft_printf("(WORD: \"%s\")", token->data);
 	if (token->type == TOKEN_AND)
@@ -40,60 +41,113 @@ static void	open_fds(t_token *token, t_cmd *cmd)
 {
 	int	fd;
 
-	if (token->type == TOKEN_IO_OUT && cmd->fd_in != FD_ERRORED)
+	if (token->type == TOKEN_IO_OUT && cmd->fd_in != INVALID_FD)
 	{
 		fd = reporting_open(token->data, O_CREAT | O_TRUNC | O_WRONLY, 0644);
-		cmd->fd_out = FD_ERRORED;
+		cmd->fd_out = INVALID_FD;
 		if (fd > 0)
 			cmd->fd_out = fd;
 	}
-	else if (token->type == TOKEN_IO_IN && cmd->fd_out != FD_ERRORED)
+	else if (token->type == TOKEN_IO_IN && cmd->fd_out != INVALID_FD)
 	{
 		fd = reporting_open(token->data, O_RDONLY, 0);
-		cmd->fd_in = FD_ERRORED;
+		cmd->fd_in = INVALID_FD;
 		if (fd > 0)
 			cmd->fd_in = fd;
 	}
-	else if (token->type == TOKEN_IO_APPEND && cmd->fd_in != FD_ERRORED)
+	else if (token->type == TOKEN_IO_APPEND && cmd->fd_in != INVALID_FD)
 	{
 		fd = reporting_open(token->data, O_CREAT | O_APPEND, 0644);
-		cmd->fd_out = FD_ERRORED;
+		cmd->fd_out = INVALID_FD;
 		if (fd > 0)
 			cmd->fd_out = fd;
 	}
 }
 
-static void	process_cmd(t_list **token_list, t_list **command_line)
+static void	process_cmd(t_list **token_list, t_cmd *cmd)
 {
-	t_cmd	*cmd;
 	t_token	*token;
 	size_t	i;
 
 	i = 0;
-	cmd = init_cmd(*token_list);
+	init_cmd(cmd, *token_list);
 	while (*token_list)
 	{
 		token = (*token_list)->data;
+		if (is_control_type(token->type))
+			break ;
 		if (token->type == TOKEN_WORD)
 			cmd->argv[i++] = ft_strdup(token->data);
 		open_fds(token, cmd);
 		*token_list = (*token_list)->next;
 	}
 	cmd->argv[i] = 0;
-	if (*command_line == NULL && cmd->fd_in == FD_UNSET)
-		cmd->fd_in = STDIN_FILENO;
-	if (*token_list == NULL && cmd->fd_out == FD_UNSET)
-		cmd->fd_out = STDOUT_FILENO;
-	ft_lstadd_back(command_line, ft_lstnew(cmd));
 }
 
-static void	process_tokens(t_list *token_list, t_list **command_line)
+static void	process_cmd_list(t_list **token_list, t_list **cmds)
 {
+	t_cmd	*cmd;
+	t_token	*token;
+
+	*cmds = NULL;
+	while (*token_list)
+	{
+		cmd = malloc(sizeof(t_cmd));
+		process_cmd(token_list, cmd);
+		ft_lstadd_back(cmds, ft_lstnew(cmd));
+		if (*token_list)
+		{
+			token = (*token_list)->data;
+			if (token->type == TOKEN_AND
+				|| token->type == TOKEN_OR)
+				break ;
+			*token_list = (*token_list)->next;
+		}
+	}
+}
+
+static void	process_command_line(t_list *token_list, t_list **command_line)
+{
+	t_cmd_list	*cmd_list;
+	t_token		*token;
+	
 	while (token_list)
 	{
-		process_cmd(&token_list, command_line);
+		cmd_list = malloc(sizeof(t_cmd_list));
+		process_cmd_list(&token_list, &cmd_list->cmd);
+		ft_lstadd_back(command_line, ft_lstnew(cmd_list));
 		if (token_list)
+		{
+			token = token_list->data;
+			if (token->type == TOKEN_AND)
+			   cmd_list->control = CONTROL_AND;
+			else if (token->type == TOKEN_OR)
+				cmd_list->control = CONTROL_OR;
 			token_list = token_list->next;
+		}
+		else
+			cmd_list->control = CONTROL_NONE;
+	}
+}
+
+void	print_command_line(t_list *command_line)
+{
+	t_list		*cmd;
+
+	while (command_line)
+	{
+		cmd = ((t_cmd_list *)command_line->data)->cmd;
+		while (cmd)
+		{
+			size_t	i;
+			i = 0;
+			while (((t_cmd *)cmd->data)->argv[i])
+				ft_printf("(%s) ", ((t_cmd *)cmd->data)->argv[i++]);
+			ft_printf("-> ");
+			cmd = cmd->next;
+		}
+		ft_printf("\n");
+		command_line = command_line->next;
 	}
 }
 
@@ -105,9 +159,9 @@ t_list	*parse(char *str)
 	command_line = NULL;
 	lexing(str, &token_list);
 	if (!token_error(token_list))
-		process_tokens(token_list, &command_line);
-	ft_putlst_fd(token_list, &print_token, STDOUT_FILENO);
-	write(1, "\n", 1);
+		process_command_line(token_list, &command_line);
+	print_command_line(command_line);
+	ft_putchar_fd('\n', STDOUT_FILENO);
 	ft_lstclear(&token_list, free_token);
 	return (command_line);
 }

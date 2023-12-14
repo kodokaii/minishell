@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:32:10 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/13 22:28:53 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/14 19:13:04 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_should_continue	handle_input(char *input, t_should_free should_free)
 	add_history(input);
 	handle_builtins(argv);
 	command_line = parse(input);
-	ft_lstclear(&command_line, free_cmd);
+	ft_lstclear(&command_line, free_cmd_list);
 	if (should_free)
 		free(input);
 	ft_split_free(argv);

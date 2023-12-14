@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/14 02:57:22 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/14 19:22:12 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void	free_cmd(t_cmd *cmd)
 void	free_cmd_list(t_cmd_list *cmd_list)
 {
 	ft_lstclear(&cmd_list->cmd, free_cmd);
+	free(cmd_list);
 }

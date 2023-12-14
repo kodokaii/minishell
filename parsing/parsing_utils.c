@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:08:59 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/14 02:58:05 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:47:41 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,12 @@ void	syntax_error(t_token *token)
 	ft_putchar_fd('\n', STDERR_FILENO);
 }
 
-t_cmd	*init_cmd(t_list *token_list)
+void	init_cmd(t_cmd *cmd, t_list *token_list)
 {
-	t_cmd	*cmd;
-
-	cmd = malloc(sizeof(t_cmd));
-	cmd->argv = malloc((count_words_in_command((token_list)) + 1)
+	cmd->argv = malloc((count_words_in_command(token_list) + 1)
 			* sizeof(char *));
-	cmd->fd_in = FD_UNSET;
-	cmd->fd_out = FD_UNSET;
-	return (cmd);
+	cmd->fd_in = STDIN_FILENO;
+	cmd->pid = INVALID_PID;
+	cmd->exit_code = 0;
+	cmd->fd_out = STDOUT_FILENO;
 }

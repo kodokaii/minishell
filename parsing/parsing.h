@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:31:42 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/14 03:08:03 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:48:01 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 # include "minishell.h"
 # include "../libft/libft.h"
-
-# define FD_UNSET -1
-# define FD_ERRORED -2
 
 typedef enum e_token_type
 {
@@ -116,7 +113,7 @@ t_bool			is_control_type(t_token_type type);
 int				reporting_open(char *filename, int flags, int mode);
 size_t			count_words_in_command(t_list *command_line);
 void			syntax_error(t_token *token);
-t_cmd			*init_cmd(t_list *token_list);
+void			init_cmd(t_cmd *cmd, t_list *token_list);
 
 t_list			*get_glob(t_str_quoted *match);
 
