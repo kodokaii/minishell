@@ -6,11 +6,25 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:10:08 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/08 17:43:58 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 00:46:30 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static t_bool	is_valid_name(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isalnum(str[i]) && str[i] != '_')
+			return (FT_FALSE);
+		++i;
+	}
+	return (FT_TRUE);
+}
 
 int	builtin_export(char **argv)
 {
@@ -23,7 +37,10 @@ int	builtin_export(char **argv)
 		parts = ft_split(*argv, "=");
 		if (parts == NULL)
 			return (0);
-		if (parts[1] == NULL)
+		if (!is_valid_name(*parts))
+			ft_dprintf(STDERR_FILENO,
+				PROGRAM_NAME": export: invalid variable name\n");
+		if (parts[1] == NULL || !is_valid_name(*parts))
 		{
 			++argv;
 			ft_split_free(parts);
