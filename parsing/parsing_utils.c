@@ -6,11 +6,18 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:08:59 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/13 14:13:23 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/14 02:58:05 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+t_bool	is_control_type(t_token_type type)
+{
+	return (type == TOKEN_AND
+		|| type == TOKEN_OR
+		|| type == TOKEN_PIPE);
+}
 
 int	reporting_open(char *filename, int flags, int mode)
 {
@@ -19,17 +26,10 @@ int	reporting_open(char *filename, int flags, int mode)
 	fd = open(filename, flags, mode);
 	if (fd < 0)
 	{
-		ft_dprintf(STDERR_FILENO, PROGRAM_NAME": failed to open %s: %s\n",
+		ft_dprintf(STDERR_FILENO, PROGRAM_NAME": %s: %s\n",
 			filename, strerror(errno));
 	}
 	return (fd);
-}
-
-int	is_command_separator_command(t_token *token)
-{
-	return (token->type == TOKEN_AND
-		|| token->type == TOKEN_OR
-		|| token->type == TOKEN_PIPE);
 }
 
 size_t	count_words_in_command(t_list *command_line)
@@ -41,7 +41,7 @@ size_t	count_words_in_command(t_list *command_line)
 	while (command_line)
 	{
 		token = command_line->data;
-		if (is_command_separator_command(token))
+		if (is_control_type(token->type))
 			break ;
 		if (token->type == TOKEN_WORD)
 			++i;
@@ -52,10 +52,11 @@ size_t	count_words_in_command(t_list *command_line)
 
 void	syntax_error(t_token *token)
 {
-	ft_putstr_fd(PROGRAM_NAME": invalid token!!!!!!!!!!!!", STDERR_FILENO);
+	ft_putstr_fd(PROGRAM_NAME": syntax error near unexpected token",
+		STDERR_FILENO);
 	if (token->data)
 		ft_dprintf(STDERR_FILENO,
-			" (%s)", token->data);
+			" '%s'", token->data);
 	ft_putchar_fd('\n', STDERR_FILENO);
 }
 
@@ -68,6 +69,5 @@ t_cmd	*init_cmd(t_list *token_list)
 			* sizeof(char *));
 	cmd->fd_in = FD_UNSET;
 	cmd->fd_out = FD_UNSET;
-	cmd->control = CONTROL_NONE;
 	return (cmd);
 }

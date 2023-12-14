@@ -1,9 +1,11 @@
 SRC			= \
 			parsing/fill_env.c \
+			parsing/fill_glob.c \
 			parsing/get_token.c \
 			parsing/get_word.c \
 			parsing/lexing.c \
 			parsing/lexing_utils.c \
+			parsing/token_error.c \
 			parsing/parsing.c \
 			parsing/parsing_utils.c \
 			parsing/parsing_cleanup.c \

@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:31:42 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/13 12:36:22 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/14 03:08:03 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,33 @@ typedef struct s_str_quoted
 	size_t	index;
 }	t_str_quoted;
 
+typedef struct s_word
+{
+	t_buf	str;
+	t_buf	quote;
+	size_t	size;
+}	t_word;	
+
 typedef struct t_token
 {
 	t_token_type	type;
 	char			*data;
 }	t_token;
 
-typedef enum	e_control
+typedef enum e_control
 {
 	CONTROL_AND = 0,
 	CONTROL_OR = 1,
 	CONTROL_PIPE,
 	CONTROL_NONE,
 }	t_control;
+
+typedef struct s_cmd_list
+{
+	int			exit_code;
+	t_control	control;
+	t_list		*cmd;
+}	t_cmd_list;
 
 typedef struct s_cmd
 {
@@ -68,7 +82,6 @@ typedef struct s_cmd
 	pid_t		pid;
 	int			exit_code;
 	int			fd_out;
-	t_control	control;
 }				t_cmd;
 
 t_list			*parse(char *str);
@@ -81,8 +94,8 @@ t_str_quoted	str_quoted_join(t_str_quoted *str_quoted1,
 void			lexing(char *str, t_list **token_lst);
 void			get_token(t_str_quoted *str_quoted, t_token *token);
 char			*get_word(t_str_quoted *str_quoted);
-
 void			fill_env(t_str_quoted *str_quoted);
+void			fill_glob(t_str_quoted *str_quoted, t_word *word);
 
 t_token_type	get_token_type(char *str);
 char			*skip_blank(char *str);
@@ -95,12 +108,16 @@ void			free_str_quoted(t_str_quoted *str_quoted);
 
 void			free_token(t_token *token);
 void			free_cmd(t_cmd *cmd);
+void			free_cmd_list(t_cmd_list *cmd_list);
 
-// parsing_utils.c
+t_bool			token_error(t_list	*token_list);
+
+t_bool			is_control_type(t_token_type type);
 int				reporting_open(char *filename, int flags, int mode);
-int				is_command_separator_command(t_token *token);
 size_t			count_words_in_command(t_list *command_line);
 void			syntax_error(t_token *token);
 t_cmd			*init_cmd(t_list *token_list);
+
+t_list			*get_glob(t_str_quoted *match);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/12 19:13:36 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/13 22:12:14 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,5 @@ int		builtin_env(char **argv);
 int		builtin_echo(char **argv);
 int		builtin_unset(char **argv);
 int		builtin_export(char **argv);
-
-// glob.c
-t_list	*glob(char *match);
 
 #endif

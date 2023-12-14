@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:11:06 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/13 15:27:52 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/13 23:23:30 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ static t_should_continue	glob_impl(
 		return (SHOULD_NOT_CONTINUE);
 	file = dirent->d_name;
 	if (matches(file, match))
-		ft_lstadd_back(result, ft_lstnew(file));
+		ft_lstadd_back(result, ft_lstnew(ft_strdup(file)));
 	return (SHOULD_CONTINUE);
 }
 
-t_list	*glob(t_str_quoted *match)
+t_list	*get_glob(t_str_quoted *match)
 {
 	char	*pwd;
 	DIR		*dir;
@@ -68,9 +68,8 @@ t_list	*glob(t_str_quoted *match)
 	dir = opendir(pwd);
 	if (dir == NULL)
 		return (NULL);
-	while (1)
-		if (!glob_impl(dir, match, &result))
-			break ;
+	while (glob_impl(dir, match, &result))
+		;
 	free(pwd);
 	closedir(dir);
 	return (result);

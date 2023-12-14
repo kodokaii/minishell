@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:32:10 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/13 10:32:11 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/13 22:28:53 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int argc, char **argv, char **envp)
 	char	*input;
 
 	ft_envp(envp);
+	ft_argv(argv);
 	if (argc == 2)
 		return (handle_input(argv[1], SHOULD_NOT_FREE),
 			ft_lstclear(ft_envp(NULL), free), 0);

@@ -6,11 +6,35 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:32:01 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/13 14:49:32 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/14 03:08:27 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+static void	print_token(t_token *token)
+{
+	if (token->type == TOKEN_WORD)
+		ft_printf("(WORD: \"%s\")", token->data);
+	if (token->type == TOKEN_AND)
+		ft_printf("(AND)");
+	if (token->type == TOKEN_OR)
+		ft_printf("(OR)");
+	if (token->type == TOKEN_PIPE)
+		ft_printf("(PIPE)");
+	if (token->type == TOKEN_IO_IN)
+		ft_printf("(IN: \"%s\")", token->data);
+	if (token->type == TOKEN_IO_HEREDOC)
+		ft_printf("(HEREDOC: \"%s\")", token->data);
+	if (token->type == TOKEN_IO_OUT)
+		ft_printf("(OUT: \"%s\")", token->data);
+	if (token->type == TOKEN_IO_APPEND)
+		ft_printf("(APPEND: \"%s\")", token->data);
+	if (token->type == TOKEN_SUBSHELL)
+		ft_printf("(SUBSHELL: \"%s\")", token->data);
+	if (token->type == TOKEN_ERROR)
+		ft_printf("(ERROR: \"%s\")", token->data);
+}
 
 static void	open_fds(t_token *token, t_cmd *cmd)
 {
@@ -39,18 +63,6 @@ static void	open_fds(t_token *token, t_cmd *cmd)
 	}
 }
 
-static void	set_control(t_token *token, t_cmd *cmd)
-{
-	if (token->type == TOKEN_PIPE)
-		cmd->control = CONTROL_PIPE;
-	else if (token->type == TOKEN_OR)
-		cmd->control = CONTROL_OR;
-	else if (token->type == TOKEN_AND)
-		cmd->control = CONTROL_AND;
-	else
-		cmd->control = CONTROL_NONE;
-}
-
 static void	process_cmd(t_list **token_list, t_list **command_line)
 {
 	t_cmd	*cmd;
@@ -62,11 +74,6 @@ static void	process_cmd(t_list **token_list, t_list **command_line)
 	while (*token_list)
 	{
 		token = (*token_list)->data;
-		if ((*token_list) && is_command_separator_command(token))
-		{
-			set_control(token, cmd);
-			break ;
-		}
 		if (token->type == TOKEN_WORD)
 			cmd->argv[i++] = ft_strdup(token->data);
 		open_fds(token, cmd);
@@ -80,33 +87,10 @@ static void	process_cmd(t_list **token_list, t_list **command_line)
 	ft_lstadd_back(command_line, ft_lstnew(cmd));
 }
 
-static int	any_error(t_list *token_list)
-{
-	t_token	*token;
-
-	while (token_list)
-	{
-		token = token_list->data;
-		if (token->type == TOKEN_ERROR)
-		{
-			syntax_error(token);
-			return (1);
-		}
-		token_list = token_list->next;
-	}
-	return (0);
-}
-
 static void	process_tokens(t_list *token_list, t_list **command_line)
 {
 	while (token_list)
 	{
-		if (*command_line == NULL
-			&& is_command_separator_command(token_list->data))
-		{
-			syntax_error(token_list->data);
-			break ;
-		}
 		process_cmd(&token_list, command_line);
 		if (token_list)
 			token_list = token_list->next;
@@ -118,11 +102,12 @@ t_list	*parse(char *str)
 	t_list	*token_list;
 	t_list	*command_line;
 
-	lexing(str, &token_list);
-	if (any_error(token_list))
-		return (ft_lstclear(&token_list, free_token), NULL);
 	command_line = NULL;
-	process_tokens(token_list, &command_line);
+	lexing(str, &token_list);
+	if (!token_error(token_list))
+		process_tokens(token_list, &command_line);
+	ft_putlst_fd(token_list, &print_token, STDOUT_FILENO);
+	write(1, "\n", 1);
 	ft_lstclear(&token_list, free_token);
 	return (command_line);
 }

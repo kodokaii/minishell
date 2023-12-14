@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/13 01:20:36 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/14 02:18:40 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	fill_env(t_str_quoted *str_quoted)
 	quote = *get_quote(str_quoted);
 	forward_char(str_quoted, 1);
 	env = _get_env(str_quoted);
+	if (quote == QUOTE_NONE)
+		env = skip_blank(env);
 	str_quoted_init(env, &env_quoted);
 	_fill_quote(&env_quoted, quote);
 	new_str_quoted = str_quoted_join(&env_quoted, str_quoted);

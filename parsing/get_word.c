@@ -6,18 +6,21 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/13 02:27:20 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/13 22:09:45 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static void	_add_char(t_buf *word, size_t *word_size, char c, t_quote quote)
+static void	_add_char(t_word *word, char c, t_quote quote)
 {
 	if ((c != '\'' && c != '\"') || quote != QUOTE_NONE)
 	{
-		ft_buf_write(word, (t_buf[1]){{&c, 1}}, *word_size);
-		(*word_size)++;
+		ft_buf_write(&word->str, (t_buf[1]){{&c, sizeof(c)}},
+			word->size * sizeof(c));
+		ft_buf_write(&word->quote, (t_buf[1]){{&quote, sizeof(quote)}},
+			word->size * sizeof(quote));
+		word->size++;
 	}
 }
 
@@ -35,12 +38,10 @@ static t_bool	_in_word(char *str, t_quote quote)
 
 char	*get_word(t_str_quoted *str_quoted)
 {
-	t_buf	word;		
-	size_t	word_size;
+	t_word	word;
 
-	word_size = 0;
+	ft_bzero(&word, sizeof(t_word));
 	forward_char(str_quoted, count_blank(get_str(str_quoted)));
-	ft_bzero(&word, sizeof(t_buf));
 	while (_in_word(get_str(str_quoted), *get_quote(str_quoted)))
 	{
 		if (get_quote(str_quoted)[0] != QUOTE_SINGLE
@@ -48,11 +49,12 @@ char	*get_word(t_str_quoted *str_quoted)
 			fill_env(str_quoted);
 		else
 		{
-			_add_char(&word, &word_size,
-				*get_str(str_quoted), *get_quote(str_quoted));
+			_add_char(&word, *get_str(str_quoted), *get_quote(str_quoted));
 			forward_char(str_quoted, 1);
 		}
 	}
-	_add_char(&word, &word_size, '\0', QUOTE_NONE);
-	return (word.buf);
+	_add_char(&word, '\0', QUOTE_NONE);
+	fill_glob(str_quoted, &word);
+	ft_buf_free(&word.quote);
+	return (word.str.buf);
 }
