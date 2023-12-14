@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:32:01 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/14 21:45:42 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/14 21:56:36 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,6 @@ t_list	*parse(char *str)
 	lexing(str, &token_list);
 	if (!token_error(token_list))
 		process_command_line(token_list, &command_line);
-	print_command_line(command_line);
-	ft_putchar_fd('\n', STDOUT_FILENO);
 	ft_lstclear(&token_list, free_token);
 	return (command_line);
 }
