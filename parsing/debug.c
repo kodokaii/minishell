@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:41:20 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/14 22:18:49 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 00:25:18 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,23 @@ void	print_cmd(t_cmd *cmd)
 	while (cmd->argv[i])
 		ft_printf("%s ", cmd->argv[i++]);
 	ft_printf("\nfd in: %d\nfd out: %d\n", cmd->fd_in, cmd->fd_out);
+}
+
+void	print_cmd_list(t_cmd_list *cmd_list)
+{
+	t_list	*current;
+
+	if (cmd_list->control == CONTROL_AND)
+		ft_putstr_fd(COLOR_RED, STDOUT_FILENO);
+	if (cmd_list->control == CONTROL_OR)
+		ft_putstr_fd(COLOR_BLUE, STDOUT_FILENO);
+	current = cmd_list->cmd;
+	while (current)
+	{
+		print_cmd(current->data);
+		ft_printf("---------\n");
+		current = current->next;
+	}
+	ft_putstr_fd(COLOR_RESET, STDOUT_FILENO);
+	ft_printf("\n________________________________\n\n");
 }
