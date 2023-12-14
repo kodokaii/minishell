@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:32:01 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/14 21:56:36 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 00:19:27 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ static void	process_cmd(t_list **token_list, t_cmd *cmd)
 			break ;
 		if (token->type == TOKEN_WORD)
 			cmd->argv[i++] = ft_strdup(token->data);
+		if (token->type == TOKEN_SUBSHELL)
+		{
+			cmd->argv[0] = ft_strdup(ft_argv(NULL)[0]);
+			cmd->argv[1] = ft_strdup(token->data);
+			i++;
+		}
 		open_fds(token, cmd);
 		*token_list = (*token_list)->next;
 	}
