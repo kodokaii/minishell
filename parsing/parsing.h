@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:31:42 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/14 21:42:03 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/14 23:41:50 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void			init_cmd(t_cmd *cmd, t_list *token_list);
 t_list			*get_glob(t_str_quoted *match);
 
 // debug.c
-void	print_command_line(t_list *command_line);
-void	print_token(t_token *token);
+void			print_command_line(t_list *command_line);
+void			print_token(t_token *token);
 
 #endif

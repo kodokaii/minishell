@@ -5,7 +5,8 @@ endif
 FILES = \
 	builtins/*.c \
 	parsing/*.c \
-	*.c
+	parsing/*.h \
+	*.h *.c
 
 ALLOWED_FUNCTIONS = \
 					readline rl_clear_history rl_on_new_line \
