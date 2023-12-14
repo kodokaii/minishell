@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:41:20 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/14 21:42:28 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/14 22:18:49 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,15 @@ void	print_command_line(t_list *command_line)
 		ft_printf("\n");
 		command_line = command_line->next;
 	}
+}
+
+void	print_cmd(t_cmd *cmd)
+{
+	size_t	i;
+
+	i = 0;
+	ft_printf("argv: ");
+	while (cmd->argv[i])
+		ft_printf("%s ", cmd->argv[i++]);
+	ft_printf("\nfd in: %d\nfd out: %d\n", cmd->fd_in, cmd->fd_out);
 }

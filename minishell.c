@@ -6,22 +6,11 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:32:10 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/14 19:13:04 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/14 22:18:46 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	print_cmd(t_cmd *cmd)
-{
-	size_t	i;
-
-	i = 0;
-	ft_printf("argv: ");
-	while (cmd->argv[i])
-		ft_printf("%s ", cmd->argv[i++]);
-	ft_printf("\nfd in: %d\nfd out: %d\n", cmd->fd_in, cmd->fd_out);
-}
 
 static t_should_continue	handle_input(char *input, t_should_free should_free)
 {
