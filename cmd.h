@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/15 18:04:47 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:57:55 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,16 @@ typedef enum e_control
 
 typedef struct s_cmd_list
 {
-	int			exit_code;
 	t_control	control;
 	t_list		*cmd;
 }	t_cmd_list;
 
 typedef enum e_file_type
 {
-	INPUT,
-	OUTPUT,
-	APPEND,
-	HEREDOC,
+	FILE_INPUT,
+	FILE_OUTPUT,
+	FILE_APPEND,
+	FILE_HEREDOC,
 }	t_file_type;
 
 typedef struct s_file

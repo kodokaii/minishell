@@ -6,11 +6,11 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:57:10 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 18:14:53 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 20:28:05 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "minishell.h"
 
 #define HEREDOC_TMP_FILE "/tmp/minishell_heredoc"
 
@@ -39,35 +39,27 @@ int	ft_heredoc(char *delim)
 
 void	check_files(t_token *token, t_cmd *cmd)
 {
-	t_file	*file;
+	t_file		*file;
 
-	if (token->type == TOKEN_IO_OUT)
+	if (token->type == TOKEN_IO_IN || token->type == TOKEN_IO_HEREDOC)
 	{
 		file = malloc(sizeof(t_file));
-		file->name = token->data;
-		file->type = OUTPUT;
-		ft_lstadd_back(&cmd->files_out, ft_lstnew(file));
-	}
-	else if (token->type == TOKEN_IO_IN)
-	{
-		file = malloc(sizeof(t_file));
-		file->name = token->data;
-		file->type = INPUT;
+		if (token->type == TOKEN_IO_IN)
+			file->type = FILE_INPUT;
+		else
+			file->type = FILE_HEREDOC;
+		file->name = ft_strdup(token->data);
 		ft_lstadd_back(&cmd->files_in, ft_lstnew(file));
 	}
-	else if (token->type == TOKEN_IO_APPEND)
+	else if (token->type == TOKEN_IO_OUT || token->type == TOKEN_IO_APPEND)
 	{
 		file = malloc(sizeof(t_file));
-		file->name = token->data;
-		file->type = APPEND;
+		if (token->type == TOKEN_IO_OUT)
+			file->type = FILE_OUTPUT;
+		else
+			file->type = FILE_APPEND;
+		file->name = ft_strdup(token->data);
 		ft_lstadd_back(&cmd->files_out, ft_lstnew(file));
-	}
-	else if (token->type == TOKEN_IO_HEREDOC)
-	{
-		file = malloc(sizeof(t_file));
-		file->name = NULL;
-		file->type = HEREDOC;
-		ft_lstadd_back(&cmd->files_in, ft_lstnew(file));
 	}
 }
 
@@ -84,14 +76,15 @@ int	reporting_open(char *filename, int flags, int mode)
 
 int	open_file(t_file *file)
 {
-	if (file->type == OUTPUT)
+	if (file->type == FILE_OUTPUT)
 		return (reporting_open(
 				file->name, O_CREAT | O_TRUNC | O_WRONLY, 0644));
-	else if (file->type == INPUT)
+	else if (file->type == FILE_INPUT)
 		return (reporting_open(file->name, O_RDONLY, 0));
-	else if (file->type == APPEND)
-		return (reporting_open(file->name, O_CREAT | O_APPEND, 0644));
-	else if (file->type == TOKEN_IO_HEREDOC)
+	else if (file->type == FILE_APPEND)
+		return (reporting_open(file->name,
+				O_WRONLY | O_CREAT | O_APPEND, 0644));
+	else if (file->type == FILE_HEREDOC)
 		return (ft_heredoc(file->name));
-	return (-1);
+	return (INVALID_FD);
 }

@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:57:04 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 18:14:44 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 18:23:46 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,6 @@ void			print_command_line(t_list *command_line);
 void			print_token(t_token *token);
 void			print_cmd_list(t_cmd_list *cmd_list);
 
-// files.c
-int				ft_heredoc(char *delim);
 void			check_files(t_token *token, t_cmd *cmd);
-int				open_file(t_file *file);
 
 #endif

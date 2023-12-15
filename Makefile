@@ -11,7 +11,6 @@ SRC			= \
 			parsing/parsing_cleanup.c \
 			parsing/str_quoted.c \
 			parsing/str_quoted_utils.c \
-			parsing/files.c \
 			parsing/debug.c \
 			minishell.c \
 			builtins/handle.c \
@@ -23,6 +22,7 @@ SRC			= \
 			builtins/unset.c \
 			builtins/export.c \
 			signals.c \
+			files.c \
 			glob.c \
 			env.c \
 			execution.c \

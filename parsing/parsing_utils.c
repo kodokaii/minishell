@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 01:01:00 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 18:11:36 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 18:46:28 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,6 @@ void	init_cmd(t_cmd *cmd, t_list *token_list)
 	cmd->exit_code = 0;
 	cmd->files_in = NULL;
 	cmd->files_out = NULL;
+	cmd->fd_in = INVALID_FD;
+	cmd->fd_out = INVALID_FD;
 }

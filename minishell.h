@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 03:44:09 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 16:00:50 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:53:14 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,12 @@ int		builtin_export(char **argv, int fd);
 // execution
 void	execution(t_list *command_line);
 int		ft_last_exit_code(int exit_code);
+int		init_cmd_list_fd(t_cmd_list *cmd_list);
 void	command_not_found(t_cmd *cmd);
-void	init_cmd_list_fd(t_cmd_list *cmd_list);
 void	get_envp_tab(char ***envp_tab);
+
+// files.c
+int		ft_heredoc(char *delim);
+int		open_file(t_file *file);
 
 #endif

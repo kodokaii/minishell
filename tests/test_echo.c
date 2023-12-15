@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 0000/00/00 00:00:00 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/10 23:35:57 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/15 20:42:37 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,8 @@ int	main(void)
 	ENSURE_OUTPUT(
 		ARGV({"./minishell", "echo - hello     ", NULL}),
 		"- hello\n");
+
+	ENSURE_OUTPUT(
+		ARGV({"./minishell", "echo $", NULL}),
+		"$\n");
 }

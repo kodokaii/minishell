@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:41:53 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 17:33:07 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/15 19:38:14 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,10 @@ int	main(void)
 	TEST_CASE("echo     hello || ls", {
 		assert_equal(*cmd->argv++, "echo");
 		assert_equal(*cmd->argv++, "hello");
-		assert(cmd->fd_in == STDIN_FILENO);
 		assert(*cmd->argv == NULL);
 		NEXT_CMD_LIST();
 		assert_equal(*cmd->argv++, "ls");
-		assert(cmd->fd_out == STDOUT_FILENO);
+		assert(cmd->files_out == NULL);
 		assert(command_line->next == NULL);
 	})
 
@@ -117,7 +116,14 @@ int	main(void)
 		NEXT_CMD_LIST();
 		assert_equal(*cmd->argv++, "ls");
 		assert(*cmd->argv == NULL);
-		assert(cmd->fd_out == STDOUT_FILENO);
+		assert(cmd->files_out == NULL);
+		assert(command_line->next == NULL);
+	})
+
+	TEST_CASE("echo   > hello", {
+		assert_equal(*cmd->argv++, "echo");
+		assert(*cmd->argv == NULL);
+		assert(cmd->files_out != NULL);
 		assert(command_line->next == NULL);
 	})
 

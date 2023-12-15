@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 14:52:35 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/13 22:35:42 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/15 20:19:54 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	handle_signals(int signal)
 		rl_redisplay();
 	}
 	else if (signal == SIGQUIT)
-		return ;
+		ft_putstr_fd("\b\b \b  \b\b", STDOUT_FILENO);
 }
 
 void	setup_signals(void)
