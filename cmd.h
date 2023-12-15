@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/15 02:34:25 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/15 17:55:09 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,27 @@ typedef struct s_cmd_list
 	t_list		*cmd;
 }	t_cmd_list;
 
+typedef enum e_ft
+{
+	INPUT,
+	OUTPUT,
+	APPEND,
+	HEREDOC,
+}	t_ft;
+
+typedef struct s_file
+{
+	char	*name;
+	t_ft	type;
+}	t_file;
+
 typedef struct s_cmd
 {
-	int			fd_in;
+	t_list		*files_in;
 	char		**argv;
 	pid_t		pid;
 	int			exit_code;
-	int			fd_out;
+	t_list		*files_out;
 }				t_cmd;
 
 #endif

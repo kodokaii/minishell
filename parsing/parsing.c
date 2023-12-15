@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:32:01 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 02:14:46 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 17:46:09 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	process_cmd(t_list **token_list, t_cmd *cmd)
 			cmd->argv[1] = ft_strdup(token->data);
 			i = 2;
 		}
-		open_fds(token, cmd);
+		check_files(token, cmd);
 		*token_list = (*token_list)->next;
 	}
 	if (i == 0)

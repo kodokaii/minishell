@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 02:14:38 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 02:55:33 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 17:55:22 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,41 @@ void	ft_heredoc(char *delim, int *fd)
 	*fd = myfd;
 }
 
+void	check_files(t_token *token, t_cmd *cmd)
+{
+	t_file	*file;
+
+	if (token->type == TOKEN_IO_OUT)
+	{
+		file = malloc(sizeof(t_file));
+		file->name = token->data;
+		file->type = OUTPUT;
+		ft_lstadd_back(&cmd->files_out, ft_lstnew(file));
+	}
+	else if (token->type == TOKEN_IO_IN)
+	{
+		file = malloc(sizeof(t_file));
+		file->name = token->data;
+		file->type = INPUT;
+		ft_lstadd_back(&cmd->files_in, ft_lstnew(file));
+	}
+	else if (token->type == TOKEN_IO_APPEND)
+	{
+		file = malloc(sizeof(t_file));
+		file->name = token->data;
+		file->type = APPEND;
+		ft_lstadd_back(&cmd->files_out, ft_lstnew(file));
+	}
+	else if (token->type == TOKEN_IO_HEREDOC)
+	{
+		file = malloc(sizeof(t_file));
+		file->name = NULL;
+		file->type = HEREDOC;
+		ft_lstadd_back(&cmd->files_in, ft_lstnew(file));
+	}
+}
+
+/*
 void	open_fds(t_token *token, t_cmd *cmd)
 {
 	if (token->type == TOKEN_IO_OUT && cmd->fd_in != INVALID_FD)
@@ -54,3 +89,4 @@ void	open_fds(t_token *token, t_cmd *cmd)
 	else if (token->type == TOKEN_IO_HEREDOC && cmd->fd_out != INVALID_FD)
 		ft_heredoc(token->data, &cmd->fd_in);
 }
+*/
