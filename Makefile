@@ -24,7 +24,9 @@ SRC			= \
 			builtins/export.c \
 			signals.c \
 			glob.c \
-			env.c
+			env.c \
+			execution.c \
+			execution_utils.c
 
 OBJ 		= $(SRC:.c=.o)
 

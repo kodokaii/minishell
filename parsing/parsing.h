@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:31:42 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 02:23:30 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 02:35:20 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PARSING_H
 
 # include "minishell.h"
-# include "../libft/libft.h"
+# include "cmd.h"
 
 # define END_LINE "\n"
 
@@ -58,30 +58,6 @@ typedef struct t_token
 	t_token_type	type;
 	char			*data;
 }	t_token;
-
-typedef enum e_control
-{
-	CONTROL_AND = 0,
-	CONTROL_OR = 1,
-	CONTROL_PIPE,
-	CONTROL_NONE,
-}	t_control;
-
-typedef struct s_cmd_list
-{
-	int			exit_code;
-	t_control	control;
-	t_list		*cmd;
-}	t_cmd_list;
-
-typedef struct s_cmd
-{
-	int			fd_in;
-	char		**argv;
-	pid_t		pid;
-	int			exit_code;
-	int			fd_out;
-}				t_cmd;
 
 t_list			*parse(char *str);
 

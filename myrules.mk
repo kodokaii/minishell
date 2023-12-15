@@ -18,7 +18,7 @@ ALLOWED_FUNCTIONS = \
 					dup dup2 pipe opendir readdir closedir \
 					strerror perror isatty ttyname ttyslot ioctl \
 					getenv tcsetattr tcgetattr tgetent tgetflag \
-					tgetnum tgetstr tgoto tputs
+					tgetnum tgetstr tgoto tputs WEXITSTATUS 
 
 norm:
 	@norminette $(FILES) *.h | grep -v OK; [ $$? = 0 ] && exit 1 || :
