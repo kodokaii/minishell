@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:10:08 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 01:17:37 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 01:49:51 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	builtin_export(char **argv)
 
 	if (*argv == NULL)
 		return (builtin_env(argv));
-	any_succeded = -1;
+	exit_code = -1;
 	while (*argv)
 	{
 		parts = ft_split(*argv, "=");

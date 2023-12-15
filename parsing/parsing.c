@@ -6,38 +6,11 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:32:01 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 01:00:41 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 02:14:46 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-static void	open_fds(t_token *token, t_cmd *cmd)
-{
-	int	fd;
-
-	if (token->type == TOKEN_IO_OUT && cmd->fd_in != INVALID_FD)
-	{
-		fd = reporting_open(token->data, O_CREAT | O_TRUNC | O_WRONLY, 0644);
-		cmd->fd_out = INVALID_FD;
-		if (fd > 0)
-			cmd->fd_out = fd;
-	}
-	else if (token->type == TOKEN_IO_IN && cmd->fd_out != INVALID_FD)
-	{
-		fd = reporting_open(token->data, O_RDONLY, 0);
-		cmd->fd_in = INVALID_FD;
-		if (fd > 0)
-			cmd->fd_in = fd;
-	}
-	else if (token->type == TOKEN_IO_APPEND && cmd->fd_in != INVALID_FD)
-	{
-		fd = reporting_open(token->data, O_CREAT | O_APPEND, 0644);
-		cmd->fd_out = INVALID_FD;
-		if (fd > 0)
-			cmd->fd_out = fd;
-	}
-}
 
 static void	process_cmd(t_list **token_list, t_cmd *cmd)
 {

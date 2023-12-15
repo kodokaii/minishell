@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:31:42 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 00:46:32 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/15 02:23:30 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void			free_cmd_list(t_cmd_list *cmd_list);
 t_bool			token_error(t_list	*token_list);
 
 t_bool			is_control_type(t_token_type type);
-int				reporting_open(char *filename, int flags, int mode);
+void			reporting_open(char *filename, int flags, int mode, int *fd);
 size_t			count_words_in_command(t_list *command_line);
 void			syntax_error(t_token *token);
 void			init_cmd(t_cmd *cmd, t_list *token_list);
@@ -123,5 +123,10 @@ t_list			*get_glob(t_str_quoted *match);
 void			print_command_line(t_list *command_line);
 void			print_token(t_token *token);
 void			print_cmd_list(t_cmd_list *cmd_list);
+
+// files.c
+void			delete_tmp(void);
+void			ft_heredoc(char *delim, int *fd);
+void			open_fds(t_token *token, t_cmd *cmd);
 
 #endif
