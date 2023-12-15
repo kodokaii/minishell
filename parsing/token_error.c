@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/15 00:47:51 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:21:03 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ static t_bool	_is_error(t_list *token_list, t_token_type last_type)
 		return (FT_TRUE);
 	if ((token->type == TOKEN_WORD || token->type == TOKEN_SUBSHELL)
 		&& last_type == TOKEN_SUBSHELL)
+		return (FT_TRUE);
+	if ((last_type == TOKEN_WORD || last_type == TOKEN_SUBSHELL)
+		&& token->type == TOKEN_SUBSHELL)
 		return (FT_TRUE);
 	if ((token->type == TOKEN_IO_IN || token->type == TOKEN_IO_HEREDOC
 			|| token->type == TOKEN_IO_OUT || token->type == TOKEN_IO_APPEND)

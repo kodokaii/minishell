@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 10:31:42 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 17:46:25 by cgodard          ###   ########.fr       */
+/*   Created: 2023/12/15 17:57:04 by cgodard           #+#    #+#             */
+/*   Updated: 2023/12/15 17:57:05 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ void			print_token(t_token *token);
 void			print_cmd_list(t_cmd_list *cmd_list);
 
 // files.c
-void			delete_tmp(void);
 void			ft_heredoc(char *delim, int *fd);
 void			check_files(t_token *token, t_cmd *cmd);
 //void			open_fds(t_token *token, t_cmd *cmd);

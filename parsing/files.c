@@ -5,19 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/15 02:14:38 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 17:55:22 by cgodard          ###   ########.fr       */
+/*   Created: 2023/12/15 17:57:10 by cgodard           #+#    #+#             */
+/*   Updated: 2023/12/15 17:57:11 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
 #define HEREDOC_TMP_FILE "/tmp/minishell_heredoc"
-
-void	delete_tmp(void)
-{
-	unlink(HEREDOC_TMP_FILE);
-}
 
 void	ft_heredoc(char *delim, int *fd)
 {
@@ -39,7 +34,9 @@ void	ft_heredoc(char *delim, int *fd)
 		ft_putchar_fd('\n', myfd);
 		free(line);
 	}
-	*fd = myfd;
+	ft_close(&myfd);
+	*fd = open(HEREDOC_TMP_FILE, O_RDONLY);
+	unlink(HEREDOC_TMP_FILE);
 }
 
 void	check_files(t_token *token, t_cmd *cmd)
