@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:11:27 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 03:04:02 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 03:07:17 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*ft_getenv(char *name)
 	t_list	*envp;
 
 	if (ft_strcmp(name, "?") == 0)
-		return (ft_last_exit_code(NULL));
+		return (ft_itoa(ft_last_exit_code(-1)));
 	envp = *ft_envp(NULL);
 	while (envp && !varcmp((char *)envp->data, name))
 		envp = envp->next;

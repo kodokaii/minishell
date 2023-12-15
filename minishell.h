@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 02:59:44 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 03:06:50 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		builtin_unset(char **argv, int fd);
 int		builtin_export(char **argv, int fd);
 
 // execution
-
+int		ft_last_exit_code(int exit_code);
 void	execution(t_list *command_line);
 void	command_not_found(t_cmd *cmd);
 
