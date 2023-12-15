@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 03:06:50 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 03:30:18 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ int		builtin_export(char **argv, int fd);
 int		ft_last_exit_code(int exit_code);
 void	execution(t_list *command_line);
 void	command_not_found(t_cmd *cmd);
+void	get_envp_tab(char ***envp_tab);
 
 #endif

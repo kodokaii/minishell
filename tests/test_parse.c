@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:41:53 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/14 22:14:46 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 03:35:11 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,4 +130,6 @@ int	main(void)
 	FAILING_TEST("|||&");
 	FAILING_TEST("echo|");
 	FAILING_TEST("|echo|");
+	//FAILING_TEST("echo (world)");
+	//FAILING_TEST("echo (");
 }
