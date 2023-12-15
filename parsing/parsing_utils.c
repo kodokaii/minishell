@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 01:01:00 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 17:52:42 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 18:11:36 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,6 @@ t_bool	is_control_type(t_token_type type)
 	return (type == TOKEN_AND
 		|| type == TOKEN_OR
 		|| type == TOKEN_PIPE);
-}
-
-void	reporting_open(char *filename, int flags, int mode, int *fd)
-{
-	int	myfd;
-
-	myfd = open(filename, flags, mode);
-	*fd = INVALID_FD;
-	if (myfd < 0)
-	{
-		ft_dprintf(STDERR_FILENO, PROGRAM_NAME": %s: %s\n",
-			filename, strerror(errno));
-	}
-	else
-		*fd = myfd;
 }
 
 size_t	count_words_in_command(t_list *command_line)
