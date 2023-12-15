@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 01:01:00 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 02:21:22 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 03:51:42 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ size_t	count_words_in_command(t_list *command_line)
 	while (command_line)
 	{
 		token = command_line->data;
+		if (token->type == TOKEN_SUBSHELL)
+		{
+			i = 2;
+			break ;
+		}
 		if (is_control_type(token->type))
 			break ;
 		if (token->type == TOKEN_WORD)
