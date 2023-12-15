@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 10:08:59 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 00:52:02 by nlaerema         ###   ########.fr       */
+/*   Created: 2023/12/15 01:01:00 by cgodard           #+#    #+#             */
+/*   Updated: 2023/12/15 01:01:01 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ size_t	count_words_in_command(t_list *command_line)
 			++i;
 		command_line = command_line->next;
 	}
+	if (i == 0)
+		i = 1;
 	return (i);
 }
 
