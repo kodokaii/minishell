@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:10:08 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 03:43:18 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 03:59:17 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,5 @@ int	builtin_export(char **argv, int fd)
 		ft_split_free(parts);
 		exit_code = 0;
 	}
-	return (!exit_code);
+	return (ft_close(&fd), (!exit_code));
 }

@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 19:58:18 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 02:57:45 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 03:55:59 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int	builtin_echo(char **argv, int fd)
 	}
 	if (output_newline)
 		ft_putchar_fd('\n', fd);
+	ft_close(&fd);
 	return (0);
 }
