@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/15 03:06:53 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 03:29:53 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,23 @@ void	command_not_found(t_cmd *cmd)
 		cmd->argv[0]);
 	cmd->fd_in = INVALID_FD;
 	cmd->fd_out = INVALID_FD;
+}
+
+void	get_envp_tab(char ***envp_tab)
+{
+	t_list	*envp_list;
+	size_t	size;
+	size_t	i;
+
+	i = 0;
+	envp_list = *ft_envp(NULL);
+	size = ft_lstsize(envp_list);
+	*envp_tab = malloc((size + 1) * sizeof(void *));
+	while (envp_list)
+	{
+		(*envp_tab)[i] = envp_list->data;
+		envp_list = envp_list->next;
+		i++;
+	}
+	(*envp_tab)[i] = NULL;
 }

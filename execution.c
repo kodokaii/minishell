@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/15 02:38:05 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/15 03:21:54 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,17 +74,23 @@ static void	_command_execution(t_list *command, char **envp)
 static void	_command_line_execution(t_list *command_line, char **envp)
 {
 	t_cmd_list	*cmd_list;
+	t_control	previous_control;
 
-	if (command_line)
+	previous_control = CONTROL_NONE;
+	while (command_line)
 	{
 		cmd_list = command_line->data;
-		_command_execution(cmd_list->cmd, envp);
-		cmd_list->exit_code
-			= ((t_cmd *)ft_lstlast(cmd_list->cmd)->data)->exit_code;
-		if (command_line->next
-			&& ((cmd_list->exit_code && cmd_list->control == CONTROL_AND)
-				|| (!cmd_list->exit_code && cmd_list->control == CONTROL_OR)))
-			_command_line_execution(command_line->next, envp);
+		if (previous_control == CONTROL_NONE
+			|| (previous_control == CONTROL_AND && !ft_last_exit_code(-1))
+			|| (previous_control == CONTROL_OR && ft_last_exit_code(-1)))
+		{
+			_command_execution(cmd_list->cmd, envp);
+			cmd_list->exit_code
+				= ((t_cmd *)ft_lstlast(cmd_list->cmd)->data)->exit_code;
+			ft_last_exit_code(cmd_list->exit_code);
+		}
+		previous_control = cmd_list->control;
+		command_line = command_line->next;
 	}
 }
 
@@ -93,6 +99,7 @@ void	execution(t_list *command_line)
 	char	**envp;
 
 	_get_envp_tab(&envp);
+	ft_last_exit_code(EXIT_SUCCESS);
 	_command_line_execution(command_line, envp);
 	free(envp);
 }
