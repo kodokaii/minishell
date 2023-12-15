@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 03:30:18 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/15 03:40:36 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char	*ft_getenv(char *name);
 void	ft_setenv(char *variable);
 
 // builtins/
+int		valid_builtin(char *name);
 int		handle_builtins(char **argv, int fd);
 int		builtin_cd(char **argv, int fd);
 int		builtin_pwd(char **argv, int fd);
