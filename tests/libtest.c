@@ -6,11 +6,13 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 0000/00/00 00:00:00 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/12 23:20:12 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 02:46:58 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libtest.h"
+
+extern char	**environ;
 
 static size_t	count_newlines(char *s)
 {
@@ -106,7 +108,7 @@ static void	child_proc(int pipefd[2], char **argv, int fd)
 {
 	close(pipefd[0]);
 	dup2(pipefd[1], fd);
-	if (execve(*argv, argv, NULL) < 0)
+	if (execve(*argv, argv, environ) < 0)
 	{
 		perror("execve");
 		exit(1);

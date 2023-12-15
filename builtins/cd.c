@@ -6,16 +6,17 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 19:58:18 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 01:15:22 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 02:57:29 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	builtin_cd(char **argv)
+int	builtin_cd(char **argv, int fd)
 {
 	char	*dir;
 
+	(void)fd;
 	if (*argv == NULL)
 	{
 		dir = ft_getenv("HOME");

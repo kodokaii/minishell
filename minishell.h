@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:53:07 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 02:31:04 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/15 02:59:44 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ char	*ft_getenv(char *name);
 void	ft_setenv(char *variable);
 
 // builtins/
-int		handle_builtins(char **argv);
-int		builtin_cd(char **argv);
-int		builtin_pwd(char **argv);
-int		builtin_exit(char **argv);
-int		builtin_env(char **argv);
-int		builtin_echo(char **argv);
-int		builtin_unset(char **argv);
-int		builtin_export(char **argv);
+int		handle_builtins(char **argv, int fd);
+int		builtin_cd(char **argv, int fd);
+int		builtin_pwd(char **argv, int fd);
+int		builtin_exit(char **argv, int fd);
+int		builtin_env(char **argv, int fd);
+int		builtin_echo(char **argv, int fd);
+int		builtin_unset(char **argv, int fd);
+int		builtin_export(char **argv, int fd);
 
 // execution
 
