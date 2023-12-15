@@ -6,43 +6,45 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/15 03:21:54 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/15 04:27:37 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	_get_envp_tab(char ***envp_tab)
-{
-	t_list	*envp_list;
-	size_t	size;
-	size_t	i;
-
-	i = 0;
-	envp_list = *ft_envp(NULL);
-	size = ft_lstsize(envp_list);
-	*envp_tab = malloc((size + 1) * sizeof(void *));
-	while (envp_list)
-	{
-		(*envp_tab)[i] = envp_list->data;
-		envp_list = envp_list->next;
-		i++;
-	}
-	(*envp_tab)[i] = NULL;
-}
-
 static void	_get_cmd(t_cmd *cmd, char **envp)
 {
 	char	*cmd_path;
 
-	cmd_path = ft_which(cmd->argv[0], envp);
-	if (cmd_path)
+	if (!valid_builtin(cmd->argv[0]))
 	{
-		free(cmd->argv[0]);
-		cmd->argv[0] = cmd_path;
+		cmd_path = ft_which(cmd->argv[0], envp);
+		if (cmd_path)
+		{
+			free(cmd->argv[0]);
+			cmd->argv[0] = cmd_path;
+		}
+		else
+			command_not_found(cmd);
+	}
+}
+
+static void	_exec(t_cmd *cmd, char **envp)
+{
+	int	pipefd[2];
+
+	if (valid_builtin(cmd->argv[0]))
+	{
+		pipefd[1] = cmd->fd_out;
+		if (cmd->fd_out == INVALID_FD)
+		{
+			pipe(pipefd);
+			cmd->fd_out = pipefd[0];
+		}
+		cmd->exit_code = handle_builtins(cmd->argv, pipefd[1]);
 	}
 	else
-		command_not_found(cmd);
+		cmd->pid = ft_execve(&cmd->fd_in, cmd->argv, envp, &cmd->fd_out);
 }
 
 static void	_command_execution(t_list *command, char **envp)
@@ -56,13 +58,14 @@ static void	_command_execution(t_list *command, char **envp)
 		_get_cmd(cmd, envp);
 		if (command->next)
 		{
-			cmd->fd_out = INVALID_FD;
-			cmd->pid = ft_execve(&cmd->fd_in, cmd->argv, envp, &cmd->fd_out);
+			if (cmd->fd_out == STDOUT_FILENO)
+				cmd->fd_out = INVALID_FD;
+			_exec(cmd, envp);
 			((t_cmd *)command->next->data)->fd_in = cmd->fd_out;
 			_command_execution(command->next, envp);
 		}
 		else
-			cmd->pid = ft_execve(&cmd->fd_in, cmd->argv, envp, &cmd->fd_out);
+			_exec(cmd, envp);
 		if (cmd->pid != INVALID_PID)
 		{
 			waitpid(cmd->pid, &status, 0);
@@ -98,7 +101,7 @@ void	execution(t_list *command_line)
 {
 	char	**envp;
 
-	_get_envp_tab(&envp);
+	get_envp_tab(&envp);
 	ft_last_exit_code(EXIT_SUCCESS);
 	_command_line_execution(command_line, envp);
 	free(envp);
