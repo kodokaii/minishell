@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:10:08 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/10 15:36:00 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 01:18:00 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	builtin_env(char **argv)
 	envp = *ft_envp(NULL);
 	if (*argv)
 		return (ft_dprintf(STDERR_FILENO,
-				PROGRAM_NAME": env: too many arguments\n"), 0);
+				PROGRAM_NAME": env: too many arguments\n"), -1);
 	while (envp)
 	{
 		ft_putendl_fd((char *)envp->data, 1);
 		envp = envp->next;
 	}
-	return (1);
+	return (0);
 }

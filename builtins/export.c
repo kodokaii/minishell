@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:10:08 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 00:46:30 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 01:17:37 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ static t_bool	is_valid_name(char *str)
 int	builtin_export(char **argv)
 {
 	char	**parts;
+	int		exit_code;
 
 	if (*argv == NULL)
 		return (builtin_env(argv));
+	any_succeded = -1;
 	while (*argv)
 	{
 		parts = ft_split(*argv, "=");
@@ -48,6 +50,7 @@ int	builtin_export(char **argv)
 		}
 		ft_setenv(*argv++);
 		ft_split_free(parts);
+		exit_code = 0;
 	}
-	return (1);
+	return (!exit_code);
 }
