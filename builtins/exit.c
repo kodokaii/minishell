@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:10:08 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 02:58:18 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/15 03:43:12 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	builtin_exit(char **argv, int fd)
 	{
 		if (argv[1])
 			return (ft_dprintf(STDERR_FILENO,
-					PROGRAM_NAME": exit: too many arguments\n"), -1);
+					PROGRAM_NAME": exit: too many arguments\n"), 1);
 		exit_code = ft_atoi(*argv);
 	}
 	ft_lstclear(ft_envp(NULL), free);
