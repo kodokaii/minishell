@@ -6,19 +6,11 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/15 17:31:09 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/11/09 00:33:19 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
-
-static t_bool	_is_executable(char *path)
-{
-	struct stat	path_stat;
-
-	stat(path, &path_stat);
-	return (!access(path, X_OK) && S_ISREG(path_stat.st_mode));
-}
 
 static char	*_join_cmd_path(const char *cmd, size_t cmd_len, const char **path)
 {
@@ -51,7 +43,7 @@ static char	*_find_cmd_path(const char *cmd, const char *path)
 		cmd_path = _join_cmd_path(cmd, cmd_len, &path);
 		if (!cmd_path)
 			return (NULL);
-		if (_is_executable(cmd_path))
+		if (access(cmd_path, X_OK) == 0)
 			return (cmd_path);
 		free(cmd_path);
 	}
@@ -66,7 +58,7 @@ char	*ft_which(const char *cmd, char *const *envp)
 	cmd_path = ft_strdup(cmd);
 	if (!cmd_path)
 		return (NULL);
-	if (!_is_executable(cmd_path))
+	if (access(cmd_path, X_OK))
 	{
 		free(cmd_path);
 		cmd_path = NULL;
