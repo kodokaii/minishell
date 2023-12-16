@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/15 19:32:31 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/16 03:50:20 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,11 @@ static void	_command_execution(t_list *command, char **envp)
 	if (command)
 	{
 		cmd = command->data;
-		_get_cmd(cmd, envp);
-		_exec(command, envp);
+		if (!cmd->exit_code)
+		{
+			_get_cmd(cmd, envp);
+			_exec(command, envp);
+		}
 		_command_execution(command->next, envp);
 		if (cmd->pid != INVALID_PID)
 		{
@@ -93,14 +96,10 @@ static void	_command_line_execution(t_list *command_line, char **envp)
 			|| (previous_control == CONTROL_AND && !ft_last_exit_code(-1))
 			|| (previous_control == CONTROL_OR && ft_last_exit_code(-1)))
 		{
-			if (init_cmd_list_fd(cmd_list))
-				ft_last_exit_code(EXIT_FAILURE);
-			else
-			{
-				_command_execution(cmd_list->cmd, envp);
-				ft_last_exit_code(((t_cmd *)
-						ft_lstlast(cmd_list->cmd)->data)->exit_code);
-			}
+			init_cmd_list_fd(cmd_list);
+			_command_execution(cmd_list->cmd, envp);
+			ft_last_exit_code(((t_cmd *)
+					ft_lstlast(cmd_list->cmd)->data)->exit_code);
 		}
 		previous_control = cmd_list->control;
 		command_line = command_line->next;

@@ -6,11 +6,21 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/15 19:23:43 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/16 03:51:38 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	ft_last_exit_code(int exit_code)
+{
+	static int	last_exit_code = 0;
+
+	if (exit_code == -1)
+		return (last_exit_code);
+	last_exit_code = exit_code;
+	return (last_exit_code);
+}
 
 static int	_get_redirection(t_cmd *cmd)
 {
@@ -35,17 +45,7 @@ static int	_get_redirection(t_cmd *cmd)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_last_exit_code(int exit_code)
-{
-	static int	last_exit_code = 0;
-
-	if (exit_code == -1)
-		return (last_exit_code);
-	last_exit_code = exit_code;
-	return (last_exit_code);
-}
-
-int	init_cmd_list_fd(t_cmd_list *cmd_list)
+void	init_cmd_list_fd(t_cmd_list *cmd_list)
 {
 	t_list	*current;
 
@@ -57,10 +57,9 @@ int	init_cmd_list_fd(t_cmd_list *cmd_list)
 		if (!current->next)
 			((t_cmd *)current->data)->fd_out = STDOUT_FILENO;
 		if (_get_redirection(current->data))
-			return (EXIT_FAILURE);
+			((t_cmd *)current->data)->exit_code = 1;
 		current = current->next;
 	}
-	return (EXIT_SUCCESS);
 }
 
 void	command_not_found(t_cmd *cmd)
