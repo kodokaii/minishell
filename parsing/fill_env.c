@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/16 02:34:19 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/16 03:19:39 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static size_t	_get_env_len(char *str)
 	size_t	len;
 
 	len = 0;
-	if (!str[0] || str[0] == '?')
+	if (str[0] == '?')
 		return (1);
 	while (ft_isalnum(str[len]) || str[len] == '_')
 		len++;
@@ -30,8 +30,6 @@ static char	*_get_env(t_str_quoted *str_quoted)
 	char	*path;
 	size_t	path_len;
 
-	if (!get_str(str_quoted)[0] || ft_isspace(get_str(str_quoted)[0]))
-		return ("$");
 	path_len = _get_env_len(get_str(str_quoted));
 	path = ft_strndup(get_str(str_quoted), path_len);
 	env = ft_getenv(path);

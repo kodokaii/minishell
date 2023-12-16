@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/15 00:46:45 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/16 03:26:40 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ static t_bool	_in_word(char *str, t_quote quote)
 	return (FT_FALSE);
 }
 
+static t_bool	_in_env(char *str, t_quote *quote)
+{
+	return (quote[0] != QUOTE_SINGLE && quote[1] != QUOTE_SINGLE
+		&& str[0] == '$'
+		&& (ft_isalnum(str[1]) || str[1] == '_'));
+}
+
 char	*get_word(t_str_quoted *str_quoted)
 {
 	t_word	word;
@@ -46,8 +53,7 @@ char	*get_word(t_str_quoted *str_quoted)
 		return (ft_strdup(END_LINE));
 	while (_in_word(get_str(str_quoted), *get_quote(str_quoted)))
 	{
-		if (get_quote(str_quoted)[0] != QUOTE_SINGLE
-			&& get_str(str_quoted)[0] == '$')
+		if (_in_env(get_str(str_quoted), get_quote(str_quoted)))
 			fill_env(str_quoted);
 		else
 		{

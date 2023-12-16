@@ -35,7 +35,7 @@ LIBFT 		= $(FT)/libft.a
 
 CC 			= cc
 CLONE		= git clone --depth=1
-CFLAGS 		= -Wall -Wextra -Werror -Ilibft -I.
+CFLAGS 		= -Wall -Wextra -Werror -I.
 LDFLAGS 	= -lreadline
 
 ifeq ($(DEBUG), 1)
