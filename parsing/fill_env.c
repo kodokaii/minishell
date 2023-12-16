@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/16 02:34:19 by cgodard          ###   ########.fr       */
+/*   Updated: 2023/12/16 03:12:48 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static char	*_get_env(t_str_quoted *str_quoted)
 	char	*path;
 	size_t	path_len;
 
-	if (!get_str(str_quoted)[0] || ft_isspace(get_str(str_quoted)[0]))
+	if (!get_str(str_quoted)[0] || ft_isspace(get_str(str_quoted)[0])
+		|| get_str(str_quoted)[0] == '"')
 		return ("$");
 	path_len = _get_env_len(get_str(str_quoted));
 	path = ft_strndup(get_str(str_quoted), path_len);

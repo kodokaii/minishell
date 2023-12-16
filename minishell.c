@@ -6,7 +6,7 @@
 /*   By: cgodard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 03:44:14 by cgodard           #+#    #+#             */
-/*   Updated: 2023/12/15 04:02:50 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/16 03:17:00 by cgodard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main(int argc, char **argv, char **envp)
 	setup_signals();
 	while (1)
 	{
-		input = readline(PROGRAM_NAME"% ");
+		input = readline("\033[1;32m"PROGRAM_NAME"\033[0m% ");
 		if (!handle_input(input, SHOULD_FREE))
 			break ;
 	}
