@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/13 02:48:23 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/17 14:07:50 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ t_str_quoted	str_quoted_join(t_str_quoted *str_quoted1,
 		len1 * sizeof(t_quote));
 	ft_memcpy(get_quote(&str_quoted_dst) + len1, get_quote(str_quoted2),
 		len2 * sizeof(t_quote));
+	free(new_str);
 	return (str_quoted_dst);
 }
