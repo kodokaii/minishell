@@ -72,4 +72,6 @@ void	get_envp_tab(char ***envp_tab);
 int		ft_heredoc(char *delim);
 int		open_file(t_file *file);
 
+int		any_command_active(int whether);
+
 #endif

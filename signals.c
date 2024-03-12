@@ -12,14 +12,28 @@
 
 #include "minishell.h"
 
+int	any_command_active(int whether)
+{
+	static int	value = 0;
+
+	if (whether >= 0)
+		value = whether;
+	return (value);
+}
+
 static void	handle_signals(int signal)
 {
 	if (signal == SIGINT)
 	{
-		ft_putchar_fd('\n', 1);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
+		if (any_command_active(-1))
+			ft_putchar_fd('\n', 1);
+		else
+		{
+			ft_putchar_fd('\n', 1);
+			rl_on_new_line();
+			rl_replace_line("", 0);
+			rl_redisplay();
+		}
 	}
 	else if (signal == SIGQUIT)
 		ft_putstr_fd("\b\b \b  \b\b", STDOUT_FILENO);

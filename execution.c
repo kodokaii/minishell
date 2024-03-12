@@ -77,8 +77,10 @@ static void	_command_execution(t_list *command, char **envp)
 		_command_execution(command->next, envp);
 		if (cmd->pid != INVALID_PID)
 		{
+			any_command_active(1);
 			waitpid(cmd->pid, &status, 0);
 			cmd->exit_code = WEXITSTATUS(status);
+			any_command_active(0);
 		}
 	}
 }

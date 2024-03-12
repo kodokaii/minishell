@@ -46,14 +46,14 @@ NAME 		= minishell
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(LDFLAGS)
+$(NAME): $(OBJ) $(LIBFT)
+	$(CC) $(CFLAGS) $^ -o $(NAME) $(LDFLAGS)
 
 $(LIBFT): $(FT)
 	$(MAKE) -C libft
 
 $(FT):
-	$(CLONE) https://github.com/kodokaii/libft_full.git $(FT)
+	$(CLONE) https://github.com/kodokaii/libft_plus_plus.git $(FT)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -73,5 +73,7 @@ clear:
 	$(RM) -r $(FT)
 
 re: fclean all
+
+-include myrules.mk
 
 .PHONY: all debug clean fclean clear re

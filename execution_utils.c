@@ -6,7 +6,7 @@
 /*   By: nlaerema <nlaerema@student.42lehavre.fr>	+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:58:17 by nlaerema          #+#    #+#             */
-/*   Updated: 2023/12/17 14:08:39 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/12/16 03:51:38 by nlaerema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static int	_get_redirection(t_cmd *cmd)
 	current = cmd->files_in;
 	while (current)
 	{
-		ft_close(&cmd->fd_in);
 		cmd->fd_in = open_file(current->data);
 		if (cmd->fd_in == INVALID_FD)
 			return (EXIT_FAILURE);
@@ -38,7 +37,6 @@ static int	_get_redirection(t_cmd *cmd)
 	current = cmd->files_out;
 	while (current)
 	{
-		ft_close(&cmd->fd_out);
 		cmd->fd_out = open_file(current->data);
 		if (cmd->fd_out == INVALID_FD)
 			return (EXIT_FAILURE);
